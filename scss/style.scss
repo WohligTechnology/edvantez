@@ -104,6 +104,7 @@ h4{
   padding: 0 15px;
   .item{
     border: none;
+    background-color: transparent;
   }
   .item-input-wrapper{
     border-radius: 15px;
@@ -503,3 +504,9 @@ font-size: 12px;
     color: $pink;
   }
 }
+
+.questions{
+  overflow: scroll;
+    height: 250px;
+}
+// .scroll-content{ background-color: rgba(20, 171, 122, 0.08) !important;}

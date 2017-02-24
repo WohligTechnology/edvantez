@@ -9881,7 +9881,8 @@ h4 {
 .login-form {
   padding: 0 15px; }
   .login-form .item {
-    border: none; }
+    border: none;
+    background-color: transparent; }
   .login-form .item-input-wrapper {
     border-radius: 15px;
     padding: 0 10px;
@@ -10201,3 +10202,7 @@ h4 {
 
 .progress-two p {
   color: #c81e47; }
+
+.questions {
+  overflow: scroll;
+  height: 250px; }
