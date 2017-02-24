@@ -10041,11 +10041,12 @@ h4 {
   .abbr select {
     background-color: #dbcbb2;
     max-width: 300px;
-    padding: 0 21px;
+    padding: 0 16px;
     border-radius: 15px;
-    direction: initial; }
+    direction: initial;
+    font-size: 12px; }
   .abbr .item-select:after {
-    right: 10px; }
+    right: 6px; }
 
 .ion-ios-arrow-back:before, .ion-ios-arrow-forward:before {
   color: #da9000;
