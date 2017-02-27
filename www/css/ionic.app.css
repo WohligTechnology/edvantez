@@ -10206,3 +10206,14 @@ h4 {
 .questions {
   overflow: scroll;
   height: 250px; }
+
+.certificate-info span {
+  font-size: 12px; }
+
+.shadows:nth-of-type(1) {
+  position: relative; }
+  .shadows:nth-of-type(1):before {
+    border-bottom: 20px solid #f7921e !important; }
+
+.shadows {
+  box-shadow: 0px -4px 2px #f7921e !important; }

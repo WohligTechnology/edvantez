@@ -321,6 +321,7 @@ p{
   }
 }
 
+//test
 .ion-ios-arrow-back:before,.ion-ios-arrow-forward:before{
     color: #da9000;
     font-size: 24px;
@@ -431,7 +432,6 @@ font-size: 12px;
   position: absolute;
   top: 0;
   left: -15px;
-//  @include position (absolute,0 null null -15px);
 }
 
 .list-inline{
@@ -510,3 +510,22 @@ font-size: 12px;
     height: 250px;
 }
 // .scroll-content{ background-color: rgba(20, 171, 122, 0.08) !important;}
+
+
+//certificate
+
+.certificate-info{
+  span{
+    font-size: 12px;
+  }
+}
+
+.shadows:nth-of-type(1){
+  position: relative;
+  &:before{
+      border-bottom: 20px solid #f7921e !important;
+  }
+}
+.shadows{
+    box-shadow: 0px -4px 2px #f7921e !important;
+}
