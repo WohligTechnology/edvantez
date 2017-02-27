@@ -9935,6 +9935,9 @@ h4 {
 .padding .shadow {
   box-shadow: 0px -4px 2px #49b848; }
 
+.nav-bar-tabs-top.hide ~ .view-container .tabs-top .tabs {
+  top: 30px !important; }
+
 .tab-color .tab-item {
   opacity: 1;
   color: #fff !important;
