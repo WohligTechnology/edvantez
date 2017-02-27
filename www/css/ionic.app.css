@@ -10137,6 +10137,10 @@ h4 {
     top: 0;
     right: -2px;
     transform: skew(-6deg); }
+  .question-list li:active {
+    background-color: #ffc977; }
+    .question-list li:active .round {
+      background-color: #f67a1f; }
 
 .round {
   width: 30px;
@@ -10147,7 +10151,7 @@ h4 {
   border-radius: 50%;
   margin: 0;
   background-color: #4c97b9;
-  color: #fff;
+  color: #fff !important;
   position: absolute;
   top: 0;
   left: -15px; }
@@ -10217,7 +10221,8 @@ h4 {
 .shadows:nth-of-type(1) {
   position: relative; }
   .shadows:nth-of-type(1):before {
-    border-bottom: 20px solid #f7921e !important; }
+    border-bottom: 20px solid #f7921e !important;
+    left: 120px !important; }
 
 .shadows {
   box-shadow: 0px -4px 2px #f7921e !important; }

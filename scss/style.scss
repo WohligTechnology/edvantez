@@ -10,6 +10,7 @@ $dark: #444 !default;
 $primary:#14ab7a !default;
 $yellow:#f67a1f !default;
 $pink:#c81e47 !default;
+$light-yellow:#ffc977 !default;
 $font-family-sans-serif: "Gotham-Light","Gotham-Medium","Gotham-Thin","Helvetica Neue", "Roboto", "Segoe UI", sans-serif !default;
 $font-family-light-sans-serif: "Gotham-Light","Gotham-Medium", "HelveticaNeue-Light", "Roboto-Light", "Segoe UI-Light", sans-serif-light !default;
 
@@ -418,6 +419,12 @@ font-size: 12px;
       right: -2px;
       transform: skew(-6deg);
     }
+    &:active{
+      background-color: $light-yellow;
+      .round{
+         background-color: $yellow;
+      }
+    }
 
   }
 }
@@ -430,7 +437,7 @@ font-size: 12px;
   border-radius: 50%;
   margin: 0;
   background-color: #4c97b9;
-  color: #fff;
+  color: #fff !important;
   position: absolute;
   top: 0;
   left: -15px;
@@ -526,6 +533,7 @@ font-size: 12px;
   position: relative;
   &:before{
       border-bottom: 20px solid #f7921e !important;
+      left: 120px !important;
   }
 }
 .shadows{
