@@ -10137,10 +10137,15 @@ h4 {
     top: 0;
     right: -2px;
     transform: skew(-6deg); }
-  .question-list li:active {
-    background-color: #ffc977; }
-    .question-list li:active .round {
-      background-color: #f67a1f; }
+
+.active {
+  background-color: #ffc977 !important; }
+
+li.active:after {
+  background-color: #ffc977; }
+
+li.active .round {
+  background-color: #f67a1f; }
 
 .round {
   width: 30px;

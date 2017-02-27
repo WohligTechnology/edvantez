@@ -419,15 +419,30 @@ font-size: 12px;
       right: -2px;
       transform: skew(-6deg);
     }
-    &:active{
-      background-color: $light-yellow;
-      .round{
-         background-color: $yellow;
-      }
-    }
+
+
+
 
   }
 }
+
+.active{
+  background-color: $light-yellow !important;
+
+}
+li.active {
+ &:after{
+        background-color: $light-yellow;
+  }
+}
+li.active {
+  .round{
+     background-color: $yellow;
+  }
+}
+
+
+
 .round{
   width: 30px;
   height: 30px;

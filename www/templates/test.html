@@ -102,10 +102,10 @@
           <div class="col-offset-10"></div>
           <div class="col-80">
   <ul class="question-list">
-    <li><span class="round">A</span>To be the lowest cost producer</li>
-    <li><span class="round">B</span>To be the most profitable company</li>
-    <li><span class="round">C</span>To be the best known brand</li>
-    <li><span class="round">D</span>To be the sole provider of something
+    <li ng-click="activeButton = 'a'" ng-class="{ 'active': activeButton == 'a' }"><span class="round">A</span>To be the lowest cost producer</li>
+    <li ng-click="activeButton = 'b'" ng-class="{'active':activeButton =='b'}"><span class="round">B</span>To be the most profitable company</li>
+    <li ng-click="activeButton = 'c'" ng-class="{'active':activeButton =='c'}"><span class="round">C</span>To be the best known brand</li>
+    <li ng-click="activeButton = 'd'" ng-class="{ 'active':activeButton == 'd'}"><span class="round">D</span>To be the sole provider of something
   people really want</li>
   <li><span class="round">E</span>To have the largest customer base</li>
   </ul>
