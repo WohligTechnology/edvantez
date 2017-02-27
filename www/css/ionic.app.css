@@ -9836,8 +9836,7 @@ a.button {
 p, span, button {
   font-family: 'Gotham-Light';
   font-weight: 700;
-  line-height: normal;
-  overflow: initial; }
+  line-height: normal; }
 
 h4 {
   font-family: 'Gotham-Medium';
@@ -10008,7 +10007,8 @@ h4 {
     position: absolute;
     left: 50%;
     bottom: 15%;
-    transform: translate(-50%, -50%); }
+    transform: translate(-50%, -50%);
+    overflow: initial !important; }
 
 .title-div {
   background-color: #9d6e9a; }

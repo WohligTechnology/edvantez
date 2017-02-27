@@ -48,7 +48,6 @@ p,span,button{
   font-family: 'Gotham-Light';
   font-weight: 700;
   line-height: normal;
-  overflow: initial;
 }
 
 h4{
@@ -263,6 +262,7 @@ h4{
       left: 50%;
       bottom: 15%;
       transform: translate(-50%,-50%);
+       overflow: initial !important;
   }
     }
 
