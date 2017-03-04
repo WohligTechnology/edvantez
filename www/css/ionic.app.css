@@ -9833,7 +9833,9 @@ a.button {
 .pdtop {
   padding-top: 50px; }
 
-p, span, button {
+p,
+span,
+button {
   font-family: 'Gotham-Light';
   font-weight: 700;
   line-height: normal; }
@@ -9843,16 +9845,11 @@ h4 {
   font-size: 16px;
   text-transform: capitalize; }
 
-.bar-header, .tabs {
+.bar-header,
+.tabs {
   background-color: transparent !important;
   border: none !important;
   background-image: none !important; }
-
-.otps .has-header {
-  top: 90px; }
-
-.tabs {
-  top: 45px; }
 
 .logo-center .buttons-right {
   margin: 0 auto; }
@@ -9862,7 +9859,8 @@ h4 {
 
 .bar-color {
   padding: 0 10px; }
-  .bar-color .left-buttons, .bar-color .right-buttons {
+  .bar-color .left-buttons,
+  .bar-color .right-buttons {
     height: 45px;
     align-items: center;
     justify-content: center;
@@ -9888,9 +9886,11 @@ h4 {
     padding: 0 10px;
     background-color: #dbcbb2; }
 
-.forms, .bgs {
+.forms,
+.bgs {
   padding: 0 25px; }
-  .forms .button, .bgs .button {
+  .forms .button,
+  .bgs .button {
     width: 55%;
     min-height: 27px;
     border-radius: 6px;
@@ -9900,10 +9900,12 @@ h4 {
     font-size: 12px;
     line-height: 10px;
     text-transform: capitalize; }
-  .forms .resending .note p, .bgs .resending .note p {
+  .forms .resending .note p,
+  .bgs .resending .note p {
     padding: 10px 0;
     text-align: center !important; }
-  .forms .butn-pull, .bgs .butn-pull {
+  .forms .butn-pull,
+  .bgs .butn-pull {
     text-align: right;
     padding: 20px 0; }
 
@@ -9955,7 +9957,11 @@ h4 {
 .tab-color .tab-item:nth-of-type(4) {
   background-color: #f6be3f; }
 
-.home, .certificate, .messages, .profile, .mail {
+.home,
+.certificate,
+.messages,
+.profile,
+.mail {
   height: 20px;
   width: 20px;
   display: flex;
@@ -10033,7 +10039,8 @@ h4 {
   padding: 0 10px;
   background-color: #dbcbb2;
   margin: 5px 0; }
-  .name-surname label input[type="text"], .name-surname label input[type="email"] {
+  .name-surname label input[type="text"],
+  .name-surname label input[type="email"] {
     padding-left: 4px;
     height: 29px;
     background: transparent;
@@ -10053,7 +10060,8 @@ h4 {
   .abbr .item-select:after {
     right: 6px; }
 
-.ion-ios-arrow-back:before, .ion-ios-arrow-forward:before {
+.ion-ios-arrow-back:before,
+.ion-ios-arrow-forward:before {
   color: #da9000;
   font-size: 24px;
   margin-top: 5px; }
@@ -10096,7 +10104,8 @@ h4 {
 .pending {
   color: #c81e47 !important; }
 
-.questions .questioning, .questions .questionings {
+.questions .questioning,
+.questions .questionings {
   height: 20px;
   width: auto;
   display: flex;
@@ -10195,15 +10204,18 @@ li.active .round {
 .sliders {
   width: 95%;
   margin: 60px auto 0; }
-  .sliders .ion-ios-arrow-back:before, .sliders .ion-ios-arrow-forward:before {
+  .sliders .ion-ios-arrow-back:before,
+  .sliders .ion-ios-arrow-forward:before {
     color: #000;
     font-size: 24px;
     margin-top: 5px; }
 
-.progress-one, .progress-two {
+.progress-one,
+.progress-two {
   position: relative;
   margin-top: 10px; }
-  .progress-one p, .progress-two p {
+  .progress-one p,
+  .progress-two p {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -10231,3 +10243,18 @@ li.active .round {
 
 .shadows {
   box-shadow: 0px -4px 2px #f7921e !important; }
+
+.platform-ios.platform-cordova:not(.fullscreen) .otps .has-header {
+  top: 110px; }
+
+.platform-ios.platform-cordova:not(.fullscreen) .has-header {
+  top: 20px; }
+
+.platform-ios.platform-cordova:not(.fullscreen) .header-item {
+  margin: 0 !important; }
+
+.otps .has-header {
+  top: 90px; }
+
+.tabs {
+  top: 45px; }
