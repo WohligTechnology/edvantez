@@ -110,6 +110,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
       })
 
+        .state('questionare', {
+        url: '/questionare',
+        templateUrl: 'templates/questionare.html',
+        controller: 'QuestionareCtrl'
+
+      })
+
   .state('otp', {
       url: '/otp',
       templateUrl: 'templates/otp.html',

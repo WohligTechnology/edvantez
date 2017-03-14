@@ -56,6 +56,10 @@ sans-serif-light !default;
   padding-top: 50px;
 }
 
+.relative{
+  position: relative;
+}
+
 p,
 span,
 button {
@@ -455,11 +459,12 @@ h4 {
       transform: skew(-6deg);
     }
   }
-}
-
-.active {
+  .active {
   background-color: $light-yellow !important;
 }
+}
+
+
 
 li.active {
   &:after {
@@ -609,6 +614,44 @@ li.active {
   top: 45px
 }
 
-// .timeup-pop{
-//   width: 50%;
-// }
+.popup-head{
+  display: none;
+}
+
+.head{
+  span{
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  h4{
+    text-transform: uppercase;
+  }
+}
+
+.result{
+  
+  span{
+       text-transform: uppercase;
+       color: $calm;
+  }
+}
+
+.questionare{
+  text-align: center;
+  ul{
+    padding: 10px 20px;
+    display: inline-block;
+    li{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 10px 0;
+    background-color: #4c97b9;
+    color: #fff !important;
+    }
+  }
+}
