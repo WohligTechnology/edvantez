@@ -8,7 +8,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
 
 .controller('OtpCtrl', function($scope) {})
 
-.controller('TestCtrl', function($scope) {
+.controller('TestCtrl', function($scope,$ionicPopup) {
   // $scope.nextSlide = function(val) {
   //     console.log("hi");
   //     console.log($ionicSlideBoxDelegate.$getByHandle(val).slidesCount());
@@ -22,10 +22,38 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
     // $scope.disableSwipe = function() {
     //   $ionicSlideBoxDelegate.enableSlide(false);
     // };
-
-  $scope.options = {
+      $scope.options = {
   loop: false
 }
+
+  $scope.filters = function () {
+
+    $scope.filter = $ionicPopup.show({
+      templateUrl: 'templates/modal/time.html',
+      scope: $scope,
+
+    });
+  }
+
+  $scope.closePopup = function () {
+      $scope.filter.close();
+    }
+
+  //     $ionicModal.fromTemplateUrl('templates/modal/time.html', {
+  //   scope: $scope,
+  //   animation: 'slide-in-up',
+  //   cssClass: 'timeup-pop'
+  // }).then(function(modal) {
+  //   $scope.modal = modal;
+  // });
+  // $scope.openTimeup = function() {
+  //   $scope.modal.show();
+  // };
+  // $scope.closeTimeup = function() {
+  //   $scope.modal.hide();
+  // };
+
+
 $scope.hostParty=[{
   data:'text',
  // img: 'img/mike.png',
