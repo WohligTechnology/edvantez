@@ -10278,10 +10278,12 @@ li.active .round {
   color: #11c1f3; }
 
 .questionare {
+  max-height: 100px;
   text-align: center; }
   .questionare ul {
-    padding: 10px 20px;
-    display: inline-block; }
+
+    padding:5px;
+    display: table-cell;; }
     .questionare ul li {
       width: 30px;
       height: 30px;

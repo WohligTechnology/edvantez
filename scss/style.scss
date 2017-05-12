@@ -630,7 +630,7 @@ li.active {
 }
 
 .result{
-  
+
   span{
        text-transform: uppercase;
        color: $calm;
@@ -639,9 +639,11 @@ li.active {
 
 .questionare{
   text-align: center;
+
   ul{
     padding: 10px 20px;
     display: inline-block;
+    
     li{
     width: 30px;
     height: 30px;

@@ -6,7 +6,6 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
-
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -98,22 +97,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   .state('testreg', {
-      url: '/testreg',
+      url: '/testreg/:id',
       templateUrl: 'templates/testreg.html',
-      controller: 'RegisteringCtrl'
+      controller: 'RegisteringCtrl',
+      /*params:{
+        id: {value: null}
+            }*/
 
     })
     .state('test', {
-        url: '/test',
+        url: '/test/:id',
         templateUrl: 'templates/test.html',
-        controller: 'TestCtrl'
+        controller: 'TestCtrl',
+        params: {                       //for sending question to test page
+          allquest: null
+
+        }
 
       })
 
         .state('questionare', {
-        url: '/questionare',
+        url: '/questionare/:tests',
         templateUrl: 'templates/questionare.html',
-        controller: 'QuestionareCtrl'
+        controller: 'QuestionareCtrl',
+        /*params:{
+          tests: null
+        }*/
 
       })
 
@@ -122,9 +131,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       templateUrl: 'templates/otp.html',
       controller: 'OtpCtrl'
 
-    });
+    })
+
+    
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/mobile');
 
-});
+})
