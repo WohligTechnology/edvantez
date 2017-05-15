@@ -1,4 +1,4 @@
-var adminurl = "http://eq.wohlig.coin/backend/"
+var adminurl = "http://eq.wohlig.co.in/api/"
 angular.module('starter.services', [])
 
 .factory('Chats', function ($http, $location) {
@@ -76,7 +76,8 @@ angular.module('starter.services', [])
     },
 
     sessionend: function () {
-      $.jStorage.flush()
+      $.jStorage.flush();
+      $.jStorage.set("login", false);
       $location.path('/tab/dash');
     },
 

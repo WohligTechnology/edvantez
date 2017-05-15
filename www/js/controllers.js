@@ -111,7 +111,8 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
 
     /* function for timer*/
     var duration = parseInt($scope.td.duration);
-    t = duration * 3600;
+    t = duration * 60;
+    //t = 10;
     $rootScope.hours;
     $rootScope.minutes;
     $rootScope.seconds;
@@ -164,7 +165,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
       Chats.resultsave(obj, function (data) {
         console.log(data.data._id);
         $.jStorage.set("resultid", data.data._id);
-        $.jStorage.deleteKey("login");
+        $.jStorage.set("login", false);
         $.jStorage.deleteKey("testid");
         $.jStorage.deleteKey("testdetails");
         $.jStorage.deleteKey("resultset");
