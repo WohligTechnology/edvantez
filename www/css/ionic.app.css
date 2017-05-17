@@ -10174,7 +10174,8 @@ li.active .round {
   left: -15px; }
 
 .list-inline {
-  display: inline-block; }
+  display: inline-block;
+  /* li:nth-of-type(4)*/ }
   .list-inline li {
     width: 30px;
     height: 30px;
@@ -10187,11 +10188,12 @@ li.active .round {
     color: #fff;
     background-color: #009593;
     position: relative; }
-  .list-inline li:nth-of-type(4):before {
+  .list-inline li.active:before {
     content: "";
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
     border-bottom: 10px solid #009593;
+    /*border-bottom: 10px solid #000000;*/
     position: absolute;
     top: -8px;
     left: 8px; }

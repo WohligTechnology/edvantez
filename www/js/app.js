@@ -116,7 +116,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       resolve: {
         check: function ($location) {
           var status = $.jStorage.get("login");
-          if (status == false) {
+          if (status != true) {
             $location.path('/tab/dash');
           }
         }
@@ -134,7 +134,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     resolve: {
       check: function ($location) {
         var status = $.jStorage.get("login");
-        if (status == false) {
+        if (status != true) {
           $location.path('/tab/dash');
         }
       }

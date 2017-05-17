@@ -53,28 +53,43 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
     $scope.currentquestion = $stateParams.allquest;
     $scope.questionno = $stateParams.id;
   }
-  if (status) {
+  if (status == true) {
     $scope.chquestions = _.chunk($scope.testdetails.questionSet, 10); //checks for user login
 
     $scope.questionchange = function (question, ind1, ind2) { //selecting question from test page
-      $scope.activeButton = null;
       $scope.currentquestion = question;
       $scope.questionno = ind1 * 10 + ind2 + 1;
+      var attempted = _.find($rootScope.resultarr, {
+        question: $scope.currentquestion.question
+      });
+      if (attempted) {
+        $scope.activeButton = attempted.selected;
+      } else {
+        $scope.activeButton = null;
+      }
+    }
 
+    var attempted = _.find($rootScope.resultarr, {
+      question: $scope.currentquestion.question
+    });
+    if (attempted) {
+      $scope.activeButton = attempted.selected;
+    } else {
+      $scope.activeButton = null;
     }
 
     $scope.selection = function (selected, qust, marks, opt) { //reultarray creation
-
-        $scope.activeButton = selected;
-
         var result = _.find($rootScope.resultarr, {
           question: qust
         });
+        $scope.activeButton = selected;
+        console.log("rs", result)
         if (!result) {
           $rootScope.resultarr.push({
             question: qust,
             marks: marks,
-            option: opt
+            option: opt,
+            selected: selected
           })
         } else {
           _.remove($rootScope.resultarr, {
@@ -83,13 +98,14 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
           $rootScope.resultarr.push({
             question: qust,
             marks: marks,
-            option: opt
+            option: opt,
+            selected: selected
           });
         }
 
         $.jStorage.set("resultset", $rootScope.resultarr);
         $rootScope.qd = Chats.questiondetails();
-        console.log($.jStorage.get("resultset"));
+        // console.log($.jStorage.get("resultset"));
       }
       //endof reultarray creation
   } else {
@@ -111,8 +127,8 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
 
     /* function for timer*/
     var duration = parseInt($scope.td.duration);
-    t = duration * 60;
-    //t = 10;
+    // t = duration * 60;
+    t = 100000;
     $rootScope.hours;
     $rootScope.minutes;
     $rootScope.seconds;
@@ -155,6 +171,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
     /*closing modal end*/
     /*function to call after timeout*/
     $rootScope.rd = function () {
+      t = 0;
       var rs = $rootScope.resultarr;
       var user = $.jStorage.get("userid");
       var obj = {

@@ -55,7 +55,7 @@ angular.module('starter.services', [])
       var questionanswered = 0;
       var remaining = 0;
       var totalquestions = 0;
-      console.log("resultset", resultset);
+      // console.log("resultset", resultset);
       if (resultset == null) {
         questionanswered = 0;
       } else {
@@ -63,15 +63,15 @@ angular.module('starter.services', [])
       }
       totalquestions = td.questionSet.length;
       remaining = totalquestions - questionanswered;
-      console.log("inservice resultset", resultset);
+      // console.log("inservice resultset", resultset);
 
 
       var qd = {
-        "totalquestions": totalquestions,
-        "questionanswered": questionanswered,
-        "remaining": remaining
-      }
-      console.log("fromservice", qd)
+          "totalquestions": totalquestions,
+          "questionanswered": questionanswered,
+          "remaining": remaining
+        }
+        //console.log("fromservice", qd)
       return qd;
     },
 
@@ -89,6 +89,8 @@ angular.module('starter.services', [])
         data: rs,
       }).success(callback);
     },
+
+
 
     findResult: function (id, callback) {
       var data = {
