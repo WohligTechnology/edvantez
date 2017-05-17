@@ -111,8 +111,8 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
 
       /* function for timer*/
       var duration = parseInt($scope.td.duration);
-      // t = duration * 60;
-      t = 10;
+      t = duration * 60;
+
       $rootScope.hours;
       $rootScope.minutes;
       $rootScope.seconds;
