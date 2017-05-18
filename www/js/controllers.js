@@ -2,20 +2,30 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
 
   .controller('DashCtrl', function ($scope, Chats, $templateCache, $ionicHistory) {
     $ionicHistory.clearCache()
+
     Chats.AllTest(function (data) {
       $scope.test = data.data;
-
     })
   })
 
 
-  .controller('MobileCtrl', function ($scope) {})
+  .controller('MobileCtrl', function ($scope, $location) {
 
-  .controller('RegisteringCtrl', function ($scope, $rootScope, $location, Chats, $stateParams) {
-    $rootScope.resultarr = Array();
+    $scope.submitcontact = function (contact) {
 
-    $.jStorage.set("resultset", $rootScope.resultarr);
-    $scope.id = $stateParams.id;
+      if (contact == null) {
+        $scope.msg = "Error: <span>Please enter valid mobile number < having 10 digits / containing only number / starting with 3,7,8 or 9></span>"
+      } else {
+        $.jStorage.set("contact", contact);
+        $location.path("\otp");
+      }
+    }
+
+  })
+
+  .controller('RegisteringCtrl', function ($scope, $rootScope, $state, $location, Chats, $stateParams, $timeout, $ionicModal) {
+
+    $scope.id = $stateParams.id
     Chats.singleTest($scope.id, function (data) {
       $scope.test = data.data;
 
@@ -25,36 +35,140 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
       $scope.numofquestions = $scope.test.questionSet.length;
     })
     $scope.submit = function (form) { //on form submition
-      Chats.userReg(form, function (data) { //checking or validation
-        $scope.errormsg = null;
-        if (data.error) { //if there are errors
+      console.log(form.email)
+      if (form.email != null && form.firstname != null && form.lastname) {
+        console.log("inside if")
+        angular.element(document.getElementById('regbutton'))[0].disabled = true;
+        Chats.userReg(form, function (data) { //checking or validation
+          $scope.errormsg = null;
+          if (data.error) { //if there are errors
 
-          $scope.errormsg = "please fill the details correctly"
-          $location.path('/testreg/' + $scope.id);
-        } else { //if no errors
-          var userid = data.data._id;
-          $.jStorage.set("userid", userid);
-          $.jStorage.set("login", true);
-          $.jStorage.set("testid", $scope.id);
-          $location.path('/questionare/' + $scope.id);
-        }
-      })
+            $scope.errormsg = "please fill the details correctly"
+            /*$location.path('/testreg/' + $scope.id);*/
+          } else { //if no errors
+            var userid = data.data._id;
+            $.jStorage.set("userid", userid);
+            $.jStorage.set("login", true);
+            $.jStorage.set("testid", $scope.id);
+            $rootScope.resultarr = Array();
+            $.jStorage.set("resultset", $rootScope.resultarr);
+            /************timer functionality*************/
+            var duration = parseInt($scope.timeing);
+            t = duration * 60;
+
+            $rootScope.hours;
+            $rootScope.minutes;
+            $rootScope.seconds;
+            $rootScope.hours = Math.floor(t / 3600) % 24;
+            t -= $rootScope.hours * 3600;
+            $rootScope.minutes = Math.floor(t / 60) % 60;
+            t -= $rootScope.minutes * 60;
+            $rootScope.seconds = t % 60;
+            $rootScope.onTimeout = function () {
+              mytimeout = $timeout($rootScope.onTimeout, 1000);
+              if ($rootScope.minutes != 0 && $rootScope.seconds == 0) {
+                $rootScope.minutes -= 1;
+                $rootScope.seconds = 60;
+              }
+              if ($rootScope.hours != 0 && $rootScope.minutes == 0 && $rootScope.seconds == 0) {
+                $rootScope.hours -= 1;
+                $rootScope.minutes = 59;
+                $rootScope.seconds = 60;
+              }
+              $rootScope.seconds--;
+              if ($rootScope.seconds == 0 && $rootScope.minutes == 0 && $rootScope.hours == 0) {
+                $timeout.cancel(mytimeout)
+                $rootScope.rd();
+              }
+            }
+            var mytimeout = $timeout($rootScope.onTimeout, 1000);
+            /* timer function ends */
+            /* initialising modal */
+            $ionicModal.fromTemplateUrl('templates/modals/time.html', {
+              scope: $rootScope,
+              animation: 'fadeInUp',
+            }).then(function (modal) {
+              $rootScope.modal = modal;
+            });
+            /* function to close modal popup */
+            $rootScope.closePopup = function () {
+              $rootScope.modal.hide();
+              $scope.modal.remove();
+              $state.go("tab.chats")
+            };
+            /*closing modal end*/
+            /*function to call after timeout*/
+            $rootScope.rd = function () {
+              $rootScope.hours = 0;
+              $rootScope.minutes = 0;
+              $rootScope.seconds = 0;
+              $timeout.cancel(mytimeout)
+              var rs = $rootScope.resultarr;
+              var user = $.jStorage.get("userid");
+              var obj = {
+                user: user,
+                testName: $scope.test._id,
+                result: rs
+              }
+              Chats.resultsave(obj, function (data) {
+
+                $.jStorage.set("resultid", data.data._id);
+                $.jStorage.set("login", false);
+                $.jStorage.deleteKey("testid");
+                $.jStorage.deleteKey("testdetails");
+                $.jStorage.deleteKey("resultset");
+              })
+              $scope.modal.show(); /* modal popup */
+            }
+            /************timer ends******************** */
+            $location.path('/test/' + $scope.id);
+          }
+        })
+      } else {
+        $scope.errormsg = "please fill the details correctly"
+      }
     }
   })
 
-  .controller('OtpCtrl', function ($scope) {})
+  .controller('OtpCtrl', function ($scope, $location) {
+    $scope.contact = $.jStorage.get("contact")
+    var verify = false;
+    $scope.onsubmit = function () {
+      if (verify == false) {
+        $scope.verifymsg = "please verify your number"
+      } else {
+        $location.path("tab/dash");
+      }
+    }
+    $scope.verifyotp = function (otpcode) {
+      console.log(otpcode)
+      if (otpcode == 1234) {
+        verify = true;
+        $scope.verifymsg = null;
+        $scope.verifysucess = "otp verified please press submit";
+      } else {
+        $scope.verifymsg = "please enter correct otp";
+      }
+    }
+  })
 
-  .controller('TestCtrl', function ($scope, $rootScope, $ionicPopup, Chats, $stateParams, $timeout, $location) {
+  .controller('TestCtrl', function ($scope, $rootScope, $ionicPopup, Chats, $stateParams, $state, $timeout, $location, $ionicModal) {
 
     $scope.testdetails = $.jStorage.get("testdetails");
     $rootScope.qd = Chats.questiondetails();
     var status = $.jStorage.get("login");
-    if ($stateParams != null) { //question selected from questionarie page
+    if ($stateParams.allquest != null) { //question selected from questionarie page
+      console.log("if ran");
       $scope.currentquestion = $stateParams.allquest;
       $scope.questionno = $stateParams.id;
+    } else {
+      console.log("else ran");
+      $scope.currentquestion = $scope.testdetails.questionSet[0];
+      $scope.questionno = 1
     }
     if (status == true) {
       $scope.chquestions = _.chunk($scope.testdetails.questionSet, 10); //checks for user login
+      console.log($scope.chquestions);
 
       $scope.questionchange = function (question, ind1, ind2) { //selecting question from test page
         $scope.currentquestion = question;
@@ -108,80 +222,10 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
     console.log($scope.series);
     if (status) {
       $scope.chquestions = _.chunk($scope.td.questionSet, 10);
-
-      /* function for timer*/
-      var duration = parseInt($scope.td.duration);
-      t = duration * 60;
-
-      $rootScope.hours;
-      $rootScope.minutes;
-      $rootScope.seconds;
-      $rootScope.hours = Math.floor(t / 3600) % 24;
-      t -= $rootScope.hours * 3600;
-      $rootScope.minutes = Math.floor(t / 60) % 60;
-      t -= $rootScope.minutes * 60;
-      $rootScope.seconds = t % 60;
-      $rootScope.onTimeout = function () {
-        mytimeout = $timeout($rootScope.onTimeout, 1000);
-        if ($rootScope.minutes != 0 && $rootScope.seconds == 0) {
-          $rootScope.minutes -= 1;
-          $rootScope.seconds = 60;
-        }
-        if ($rootScope.hours != 0 && $rootScope.minutes == 0 && $rootScope.seconds == 0) {
-          $rootScope.hours -= 1;
-          $rootScope.minutes = 59;
-          $rootScope.seconds = 60;
-        }
-        $rootScope.seconds--;
-        if ($rootScope.seconds == 0 && $rootScope.minutes == 0 && $rootScope.hours == 0) {
-          $timeout.cancel(mytimeout)
-          $rootScope.rd();
-        }
-      }
-      var mytimeout = $timeout($rootScope.onTimeout, 1000);
-      /* timer function ends */
-      /* initialising modal */
-      $ionicModal.fromTemplateUrl('templates/modals/time.html', {
-        scope: $rootScope,
-        animation: 'slide-in-up',
-      }).then(function (modal) {
-        $rootScope.modal = modal;
-      });
-      /* function to close modal popup */
-      $rootScope.closePopup = function () {
-        $rootScope.modal.hide();
-        $state.go("tab.chats")
-      };
-      /*closing modal end*/
-      /*function to call after timeout*/
-      $rootScope.rd = function () {
-        $rootScope.hours = 0;
-        $rootScope.minutes = 0;
-        $rootScope.seconds = 0;
-        $timeout.cancel(mytimeout)
-        var rs = $rootScope.resultarr;
-        var user = $.jStorage.get("userid");
-        var obj = {
-          user: user,
-          testName: $scope.td._id,
-          result: rs
-        }
-        Chats.resultsave(obj, function (data) {
-
-          $.jStorage.set("resultid", data.data._id);
-          $.jStorage.set("login", false);
-          $.jStorage.deleteKey("testid");
-          $.jStorage.deleteKey("testdetails");
-          $.jStorage.deleteKey("resultset");
-        })
-        $scope.modal.show(); /* modal popup */
-      }
     } else {
       Chats.sessionend();
     }
-    $scope.sessiondestroyer = function () {
-      Chats.sessionend();
-    }
+
   })
 
   .controller('ChatsCtrl', function ($scope, Chats, $timeout, $templateCache, $ionicHistory) {

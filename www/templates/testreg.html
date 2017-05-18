@@ -52,13 +52,13 @@
                 <div class="name-surname">
                   <label class="item-input-wrapper">
    <i class="mail"></i>
-       <input type="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" ng-model="form.email">
+       <input type="email" placeholder="Email" ng-pattern = '/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i' ng-model="form.email">
  </label>
                 </div>
               </div>
             </div>
             <div class="butn-pull bgs">
-              <button class="button button-stable " ng-click="submit(form)">
+              <button class="button button-stable" id="regbutton" ng-click="submit(form)">
 Take Test
   </button>
             </div>
