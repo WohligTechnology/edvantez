@@ -5946,11 +5946,6 @@ a.subdued:last-child {
   border-color: #444;
 }
 
-.animated.modal.slideInUp.ng-leave {
-  -webkit-animation-name: slideInUp;
-  animation-name: slideInUp;
-}
-
 .tabs-striped.tabs-top .tab-item.tab-item-active .badge,
 .tabs-striped.tabs-top .tab-item.active .badge,
 .tabs-striped.tabs-top .tab-item.activated .badge {
@@ -13781,6 +13776,11 @@ li.active .round {
   justify-content: center;
   border-radius: 50%;
   margin: 10px 0;
-  background-color: #4c97b9;
+  background-color: #c81e47;
   color: #fff !important;
+}
+
+.solved {
+  background-color: #f67a1f !important;
+  color: black;
 }

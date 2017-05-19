@@ -222,6 +222,14 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
     console.log($scope.series);
     if (status) {
       $scope.chquestions = _.chunk($scope.td.questionSet, 10);
+      $scope.checkSolvedQuestions = function (question) {
+        $scope.check = Chats.checkAttempted(question);
+        if ($scope.check != null) {
+          return "solved";
+        } else {
+          return "notsolved";
+        }
+      }
     } else {
       Chats.sessionend();
     }
