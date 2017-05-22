@@ -23,7 +23,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
 
   })
 
-  .controller('RegisteringCtrl', function ($scope, $rootScope, $state, $location, Chats, $stateParams, $timeout, $ionicModal) {
+  .controller('RegisteringCtrl', function ($scope, $rootScope, $state, $location, $ionicPopup, Chats, $stateParams, $timeout, $ionicModal) {
 
     $scope.id = $stateParams.id
     Chats.singleTest($scope.id, function (data) {
@@ -83,22 +83,21 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
             }
             var mytimeout = $timeout($rootScope.onTimeout, 1000);
             /* timer function ends */
-            /* initialising modal */
-            $ionicModal.fromTemplateUrl('templates/modals/time.html', {
-              scope: $rootScope,
-              animation: 'fadeInUp',
-            }).then(function (modal) {
-              $rootScope.modal = modal;
-            });
+
             /* function to close modal popup */
             $rootScope.closePopup = function () {
-              $rootScope.modal.hide();
-              $scope.modal.remove();
+              $rootScope.modal.close();
+              // $scope.modal.remove();
               $state.go("tab.chats")
             };
             /*closing modal end*/
             /*function to call after timeout*/
             $rootScope.rd = function () {
+              $rootScope.modal = $ionicPopup.show({
+                templateUrl: 'templates/modals/time.html',
+                scope: $rootScope,
+                animation: 'fadeInUp',
+              })
               $rootScope.hours = 0;
               $rootScope.minutes = 0;
               $rootScope.seconds = 0;
@@ -118,7 +117,11 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
                 $.jStorage.deleteKey("testdetails");
                 $.jStorage.deleteKey("resultset");
               })
-              $scope.modal.show(); /* modal popup */
+
+              $rootScope.modal.then(function (modal) {
+                $rootScope.modal = modal;
+              });
+              // $scope.modal.show(); /* modal popup */
             }
             /************timer ends******************** */
             $location.path('/test/' + $scope.id);
@@ -169,7 +172,16 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
     if (status == true) {
       $scope.chquestions = _.chunk($scope.testdetails.questionSet, 10); //checks for user login
       console.log($scope.chquestions);
-
+      $scope.checkSolvedQuestions = function (question) {
+        $scope.check = Chats.checkAttempted(question);
+        if ($scope.check != null && $scope.currentquestion == question) {
+          return "solved active";
+        } else if ($scope.check != null && $scope.currentquestion != question) {
+          return "solved";
+        } else if ($scope.check == null && $scope.currentquestion == question) {
+          return "active";
+        }
+      }
       $scope.questionchange = function (question, ind1, ind2) { //selecting question from test page
         $scope.currentquestion = question;
         $scope.questionno = ind1 * 10 + ind2 + 1;
@@ -206,13 +218,19 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
 
       }
       //endof reultarray creation
+      $scope.checkSolvedQuestions = function (question) {
+        $scope.check = Chats.checkAttempted(question);
+        if ($scope.check != null && $scope.currentquestion == question) {
+          return "solved active";
+        } else if ($scope.check != null && $scope.currentquestion != question) {
+          return "solved";
+        } else if ($scope.check == null && $scope.currentquestion == question) {
+          return "active";
+        }
+      }
     } else {
       Chats.sessionend();
     }
-    $scope.sessiondestroyer = function () {
-      Chats.sessionend();
-    }
-
   })
 
   .controller('QuestionareCtrl', function ($scope, Chats, $stateParams, $location, $rootScope, $timeout, $state, $ionicModal) {

@@ -92,8 +92,7 @@ h4 {
 }
 
 .bar-color {
-  padding: 0 10px;
-  // background-color: #000 !important;
+  padding: 0 10px; // background-color: #000 !important;
   .left-buttons,
   .right-buttons {
     height: 45px;
@@ -503,7 +502,7 @@ li.active {
     border-radius: 50%;
     margin: 0;
     color: #fff;
-    background-color: #009593;
+    background-color: #c81e47;
     position: relative;
   }
   /* li:nth-of-type(4)*/
@@ -512,7 +511,7 @@ li.active {
       content: "";
       border-left: 7px solid transparent;
       border-right: 7px solid transparent;
-      border-bottom: 10px solid #009593;
+      border-bottom: 10px solid #c81e47;
       /*border-bottom: 10px solid #000000;*/
       position: absolute;
       top: -8px;
