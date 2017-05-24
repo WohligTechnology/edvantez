@@ -13255,7 +13255,7 @@ h4 {
 .login-form .item-input-wrapper {
   border-radius: 15px;
   padding: 0 10px;
-  background-color: #dbcbb2;
+  background-color: #10343e;
 }
 
 .forms,
@@ -13269,9 +13269,12 @@ h4 {
   min-height: 27px;
   border-radius: 6px;
   padding: 8px 0;
-  background-color: #14ab7a !important;
-  color: #fff !important;
-  font-size: 12px;
+  background-color: #97bec9 !important;
+  color: #10343e !important;
+  border-top-left-radius: 2em;
+  border-bottom-right-radius: 2em;
+  font-size: 14px;
+  font-weight: 900;
   line-height: 10px;
   text-transform: capitalize;
 }
@@ -13318,14 +13321,14 @@ h4 {
   content: "";
   border-left: 9px solid transparent;
   border-right: 9px solid transparent;
-  border-bottom: 20px solid #49b848;
+  border-bottom: 20px solid #3dcdfd;
   position: absolute;
   top: -15px;
   left: 20px;
 }
 
 .padding .shadow {
-  box-shadow: 0px -4px 2px #49b848;
+  box-shadow: 0px -4px 2px #3dcdfd;
 }
 
 .nav-bar-tabs-top.hide~.view-container .tabs-top .tabs {
@@ -13339,19 +13342,19 @@ h4 {
 }
 
 .tab-color .tab-item:nth-of-type(1) {
-  background-color: #49b848;
+  background-color: #3dcdfd;
 }
 
 .tab-color .tab-item:nth-of-type(2) {
-  background-color: #f7921e;
+  background-color: #9ac829;
 }
 
 .tab-color .tab-item:nth-of-type(3) {
-  background-color: #e4513e;
+  background-color: #fc8922;
 }
 
 .tab-color .tab-item:nth-of-type(4) {
-  background-color: #f6be3f;
+  background-color: #fc363b;
 }
 
 .home,
@@ -13430,13 +13433,14 @@ h4 {
 }
 
 .title-div {
-  background-color: #9d6e9a;
+  background-color: #fc9940;
 }
 
 .title-div p {
   margin: 0;
   padding: 10px 0;
   color: #fff;
+  font-weight: 900;
 }
 
 .register {
@@ -13459,7 +13463,7 @@ h4 {
 .name-surname label {
   border-radius: 15px;
   padding: 0 10px;
-  background-color: #dbcbb2;
+  background-color: #10343e;
   margin: 5px 0;
 }
 
@@ -13467,6 +13471,9 @@ h4 {
 .name-surname label input[type="email"] {
   padding-left: 4px;
   height: 29px;
+  color: #fff !important;
+  font-weight: 900 !important;
+  font-size: 18px !important;
   background: transparent;
   line-height: 18px;
 }
@@ -13480,12 +13487,14 @@ h4 {
 }
 
 .abbr select {
-  background-color: #dbcbb2;
+  background-color: #10343e;
   max-width: 300px;
   padding: 0 16px;
   border-radius: 15px;
   direction: initial;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 900;
+  color: #fff;
 }
 
 .abbr .item-select:after {
@@ -13638,7 +13647,7 @@ li.active .round {
   border-radius: 50%;
   margin: 0;
   color: #fff;
-  background-color: #c81e47;
+  background-color: #009593;
   position: relative;
 }
 
@@ -13646,7 +13655,7 @@ li.active .round {
   content: "";
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
-  border-bottom: 10px solid #c81e47;
+  border-bottom: 10px solid #009593;
   /*border-bottom: 10px solid #000000;*/
   position: absolute;
   top: -8px;
@@ -13712,12 +13721,12 @@ li.active .round {
 }
 
 .shadows:nth-of-type(1):before {
-  border-bottom: 20px solid #f7921e !important;
+  border-bottom: 20px solid #9ac829 !important;
   left: 120px !important;
 }
 
 .shadows {
-  box-shadow: 0px -4px 2px #f7921e !important;
+  box-shadow: 0px -4px 2px #9ac829 !important;
 }
 
 .platform-ios.platform-cordova:not(.fullscreen) .otps .has-header {

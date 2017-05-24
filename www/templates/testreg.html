@@ -27,7 +27,7 @@
             <div class="row">
               <div class="col">
                 <div class="abbr">
-                  <label class="item item-input item-select">
+                  <label class="item item-input item-select" style="width:23%;">
     <select>
       <option>Mrs</option>
       <option selected>Mr</option>
@@ -36,23 +36,47 @@
   </label>
                 </div>
               </div>
-              <div class="col col-75">
+              <!--<div class="col col-75">
                 <div class="name-surname">
                   <label class="item-input-wrapper">
         <input type="text" placeholder="Full Name" ng-model="form.firstname">
       </label>
                   <label class="item-input-wrapper">
-        <input type="text" placeholder="Laste Name" ng-model="form.lastname">
+        <input type="text" placeholder="Last Name" ng-model="form.lastname">
       </label>
                 </div>
-              </div>
+              </div>-->
             </div>
+
             <div class="row ">
               <div class="col">
                 <div class="name-surname">
                   <label class="item-input-wrapper">
-   <i class="mail"></i>
-       <input type="email" placeholder="Email" ng-pattern = '/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i' ng-model="form.email">
+ <!--  <i class="mail" style="background-color:white"></i>-->
+       <input type="text" placeholder="First Name" ng-model="form.firstname">
+ </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row ">
+              <div class="col">
+                <div class="name-surname">
+                  <label class="item-input-wrapper">
+ <!--  <i class="mail" style="background-color:white"></i>-->
+       <input type="text" placeholder="Last Name" ng-model="form.lastname">
+ </label>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row ">
+              <div class="col">
+                <div class="name-surname">
+                  <label class="item-input-wrapper">
+ <!--  <i class="mail" style="background-color:white"></i>-->
+       <input type="email" placeholder="Email" ng-pattern = '/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i'  ng-model="form.email">
  </label>
                 </div>
               </div>

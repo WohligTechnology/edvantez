@@ -35,7 +35,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
       $scope.numofquestions = $scope.test.questionSet.length;
     })
     $scope.submit = function (form) { //on form submition
-      console.log(form.email)
+      console.log(form.email);
       if (form.email != null && form.firstname != null && form.lastname) {
         console.log("inside if")
         angular.element(document.getElementById('regbutton'))[0].disabled = true;
@@ -121,14 +121,15 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
               $rootScope.modal.then(function (modal) {
                 $rootScope.modal = modal;
               });
-              // $scope.modal.show(); /* modal popup */
+
             }
+
             /************timer ends******************** */
             $location.path('/test/' + $scope.id);
           }
         })
       } else {
-        $scope.errormsg = "please fill the details correctly"
+        $scope.errormsg = "if not running"
       }
     }
   })
@@ -148,9 +149,12 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
       if (otpcode == 1234) {
         verify = true;
         $scope.verifymsg = null;
-        $scope.verifysucess = "otp verified please press submit";
+        $scope.verifymsg = "otp verified please press submit";
+        $scope.onsubmit();
       } else {
+        verify = false;
         $scope.verifymsg = "please enter correct otp";
+
       }
     }
   })
@@ -235,6 +239,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
 
   .controller('QuestionareCtrl', function ($scope, Chats, $stateParams, $location, $rootScope, $timeout, $state, $ionicModal) {
     $rootScope.qd = Chats.questiondetails();
+    console.log($rootScope.clock);
     var status = $.jStorage.get("login");
     $scope.td = $.jStorage.get("testdetails");
     console.log($scope.series);
