@@ -35,6 +35,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       .state('tab', {
         url: '/tab',
         abstract: true,
+        cache: false,
         templateUrl: 'templates/tabs.html'
       })
 
@@ -42,6 +43,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
       .state('tab.dash', {
         url: '/dash',
+        cache: false,
         views: {
           'tab-dash': {
             templateUrl: 'templates/tab-dash.html',
@@ -55,6 +57,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 
         url: '/chats',
+        cache: false,
         views: {
           'tab-chats': {
             templateUrl: 'templates/tab-chats.html',
@@ -64,6 +67,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       })
       .state('tab.chat-detail', {
         url: '/chats/:chatId',
+        cache: false,
         views: {
           'tab-chats': {
             templateUrl: 'templates/chat-detail.html',
@@ -74,6 +78,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
       .state('tab.account', {
         url: '/account',
+        cache: false,
         views: {
           'tab-account': {
             templateUrl: 'templates/tab-account.html',
@@ -83,6 +88,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       })
       .state('tab.noaccount', {
         url: '/noaccount',
+        cache: false,
         views: {
           'tab-accounts': {
             templateUrl: 'templates/tab-accounts.html',
@@ -94,6 +100,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       //started by ruchira
       .state('mobile', {
         url: '/mobile',
+        cache: false,
         templateUrl: 'templates/mobile.html',
         controller: 'MobileCtrl'
 
@@ -114,6 +121,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       })
       .state('test', {
         url: '/test/:id',
+        cache: false,
         templateUrl: 'templates/test.html',
         controller: 'TestCtrl',
         params: { //for sending question to test page
@@ -133,6 +141,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
       .state('questionare', {
         url: '/questionare/:tests',
+        cache: false,
         templateUrl: 'templates/questionare.html',
         controller: 'QuestionareCtrl',
         /*params:{
@@ -150,6 +159,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
       .state('otp', {
         url: '/otp',
+        cache: false,
         templateUrl: 'templates/otp.html',
         controller: 'OtpCtrl'
 

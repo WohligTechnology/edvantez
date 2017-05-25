@@ -1,31 +1,34 @@
 <ion-view hide-nav-bar="true" class="bg-green">
   <ion-content>
-    <div class="logo-img">
-      <img src="img/mobile/logo-black.png" alt="Logo">
-    </div>
-    <div class="forms">
-      <form action="">
-        <h4 class="text-center">mobile number <br>verification</h4>
-        <div class="list login-form">
-          <div class="item item-input-inset">
-            <label class="item-input-wrapper">
+    <div class="page" style="padding-top:25%">
+      <div class="logo-img">
+        <img src="img/mobile/logo-black.png" alt="Logo">
+      </div>
+      <div class="forms">
+        <form action="">
+          <h4 class="text-center">mobile number <br>verification</h4>
+          <div class="list login-form">
+            <div class="item item-input-inset">
+              <label class="item-input-wrapper">
             <input type="number" placeholder="+91" style="font-weight: 900; color:white;" ng-model="contact" data-ng-pattern="/^(\+\d{1,3}[- ]?)?\d{10}$/" >
           </label>
+            </div>
           </div>
-        </div>
-        <div class="note">
-          <p> Note: <span>We will be sending One Time Password(OTP) to the  mobile number entered above.</span></p>
-        </div>
-        <div class="butn-pull">
-          <button class="button " ng-click="submitcontact(contact)">
+          <div class="note">
+            <p> Note: <span>We will be sending One Time Password(OTP) to the mobile number entered above.</span></p>
+          </div>
+          <div class="butn-pull">
+            <button class="button " style="width:50% !important;" ng-click="submitcontact(contact)">
               Submit    
             </button>
-        </div>
-      </form>
-      <div class="note notes" ng-bind-html="msg">
+          </div>
+        </form>
+        <div class="note notes" ng-bind-html="msg">
 
+        </div>
       </div>
     </div>
+
   </ion-content>
 
 

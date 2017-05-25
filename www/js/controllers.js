@@ -1,8 +1,19 @@
 angular.module('starter.controllers', ['angular-svg-round-progressbar'])
 
-  .controller('DashCtrl', function ($scope, Chats, $templateCache, $ionicHistory) {
-    $ionicHistory.clearCache()
-
+  .controller('DashCtrl', function ($scope, $state, $ionicPlatform, Chats, $templateCache, $ionicHistory) {
+    // $ionicHistory.clearCache();
+    console.log("$state.current.name outside", $state.current.name);
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      // if ($state.is('tab.dash')) { $state.current.name
+      console.log("$state.current.name", $state.current.name);
+      if ($state.current.name == 'tab.dash') {
+        ionic.Platform.exitApp();
+      } else if ($state.current.name == 'tab.chats') {
+        $state.go("tab.dash");
+      } else {
+        event.preventDefault();
+      }
+    }, 401);
     Chats.AllTest(function (data) {
       $scope.test = data.data;
     })
@@ -23,7 +34,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
 
   })
 
-  .controller('RegisteringCtrl', function ($scope, $rootScope, $state, $location, $ionicPopup, Chats, $stateParams, $timeout, $ionicModal) {
+  .controller('RegisteringCtrl', function ($scope, $ionicPlatform, $rootScope, $state, $location, $ionicPopup, Chats, $stateParams, $timeout, $ionicModal) {
 
     $scope.id = $stateParams.id
     Chats.singleTest($scope.id, function (data) {
@@ -93,38 +104,43 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
             /*closing modal end*/
             /*function to call after timeout*/
             $rootScope.rd = function () {
-              $rootScope.modal = $ionicPopup.show({
-                templateUrl: 'templates/modals/time.html',
-                scope: $rootScope,
-                animation: 'fadeInUp',
-              })
               $rootScope.hours = 0;
               $rootScope.minutes = 0;
               $rootScope.seconds = 0;
               $timeout.cancel(mytimeout)
-              var rs = $rootScope.resultarr;
               var user = $.jStorage.get("userid");
               var obj = {
                 user: user,
                 testName: $scope.test._id,
-                result: rs
+                result: $.jStorage.get("resultset")
               }
               Chats.resultsave(obj, function (data) {
-
+                $.jStorage.flush();
                 $.jStorage.set("resultid", data.data._id);
                 $.jStorage.set("login", false);
-                $.jStorage.deleteKey("testid");
-                $.jStorage.deleteKey("testdetails");
-                $.jStorage.deleteKey("resultset");
+
               })
+              //deregisterBackButton = $ionicPlatform.registerBackButtonAction(function (e) {}, 401);
+
+              $rootScope.modal = $ionicPopup.show({
+                templateUrl: 'templates/modals/time.html',
+                scope: $rootScope,
+                animation: 'fadeInUp',
+
+              })
+              $rootScope.modal.then(function (res) {
+                console.log("running backhalt")
+                //deregisterBackButton();
+              });
 
               $rootScope.modal.then(function (modal) {
                 $rootScope.modal = modal;
               });
 
+
             }
 
-            /************timer ends******************** */
+            /**********************timer ends*********************/
             $location.path('/test/' + $scope.id);
           }
         })
@@ -159,33 +175,22 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
     }
   })
 
-  .controller('TestCtrl', function ($scope, $rootScope, $ionicPopup, Chats, $stateParams, $state, $timeout, $location, $ionicModal) {
-
+  .controller('TestCtrl', function ($scope, $rootScope, $ionicPlatform, $ionicPopup, Chats, $stateParams, $state, $timeout, $location, $ionicModal) {
+    // $ionicPlatform.registerBackButtonAction(function (e) {}, 401);
     $scope.testdetails = $.jStorage.get("testdetails");
     $rootScope.qd = Chats.questiondetails();
     var status = $.jStorage.get("login");
     if ($stateParams.allquest != null) { //question selected from questionarie page
-      console.log("if ran");
       $scope.currentquestion = $stateParams.allquest;
       $scope.questionno = $stateParams.id;
     } else {
-      console.log("else ran");
       $scope.currentquestion = $scope.testdetails.questionSet[0];
       $scope.questionno = 1
     }
     if (status == true) {
       $scope.chquestions = _.chunk($scope.testdetails.questionSet, 10); //checks for user login
       console.log($scope.chquestions);
-      $scope.checkSolvedQuestions = function (question) {
-        $scope.check = Chats.checkAttempted(question);
-        if ($scope.check != null && $scope.currentquestion == question) {
-          return "solved active";
-        } else if ($scope.check != null && $scope.currentquestion != question) {
-          return "solved";
-        } else if ($scope.check == null && $scope.currentquestion == question) {
-          return "active";
-        }
-      }
+
       $scope.questionchange = function (question, ind1, ind2) { //selecting question from test page
         $scope.currentquestion = question;
         $scope.questionno = ind1 * 10 + ind2 + 1;
@@ -224,11 +229,11 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
       //endof reultarray creation
       $scope.checkSolvedQuestions = function (question) {
         $scope.check = Chats.checkAttempted(question);
-        if ($scope.check != null && $scope.currentquestion == question) {
+        if ($scope.check != null && $scope.currentquestion.question == question.question) {
           return "solved active";
-        } else if ($scope.check != null && $scope.currentquestion != question) {
+        } else if ($scope.check != null && $scope.currentquestion.question != question.question) {
           return "solved";
-        } else if ($scope.check == null && $scope.currentquestion == question) {
+        } else if ($scope.check == null && $scope.currentquestion.question == question.question) {
           return "active";
         }
       }
@@ -237,7 +242,8 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
     }
   })
 
-  .controller('QuestionareCtrl', function ($scope, Chats, $stateParams, $location, $rootScope, $timeout, $state, $ionicModal) {
+  .controller('QuestionareCtrl', function ($scope, Chats, $ionicPlatform, $stateParams, $location, $rootScope, $timeout, $state, $ionicModal) {
+    // $ionicPlatform.registerBackButtonAction(function (e) {}, 401);
     $rootScope.qd = Chats.questiondetails();
     console.log($rootScope.clock);
     var status = $.jStorage.get("login");
@@ -259,14 +265,20 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
 
   })
 
-  .controller('ChatsCtrl', function ($scope, Chats, $timeout, $templateCache, $ionicHistory) {
+  .controller('ChatsCtrl', function ($scope, $ionicPlatform, $state, Chats, $timeout, $templateCache, $ionicHistory) {
 
 
     $scope.resultid = $.jStorage.get("resultid");
 
     Chats.findResult($scope.resultid, function (data) {
       $scope.resultdetails = data.data;
-
+      /*$ionicPlatform.registerBackButtonAction(function (event) {
+        if ($state.is('tab.dash')) {
+          ionic.Platform.exitApp();
+        } else {
+          event.preventDefault();
+        }
+      }, 100);*/
       $scope.testid = data.data.testName;
 
       $timeout(function () {
@@ -292,12 +304,12 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
 
           $scope.percentage = (total * 100) / totalmarks;
           $.jStorage.flush();
-          $ionicHistory.clearCache()
+          //$ionicHistory.clearCache()
 
         })
-      }, 800)
+      }, 100)
     })
-
+    $ionicPlatform.registerBackButtonAction(function (e) {}, 401);
   })
 
 

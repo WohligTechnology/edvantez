@@ -6996,7 +6996,7 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.activated {
 .tabs-icon-top.tabs .tab-item,
 .tabs-icon-bottom>.tabs .tab-item,
 .tabs-icon-bottom.tabs .tab-item {
-  font-size: 10px;
+  /*font-size: 10px;*/
   line-height: 14px;
 }
 
@@ -13265,9 +13265,9 @@ h4 {
 
 .forms .button,
 .bgs .button {
-  width: 55%;
+  width: 80% !important;
   min-height: 27px;
-  border-radius: 6px;
+  /*border-radius: 6px;*/
   padding: 8px 0;
   background-color: #97bec9 !important;
   color: #10343e !important;
@@ -13276,6 +13276,7 @@ h4 {
   font-size: 14px;
   font-weight: 900;
   line-height: 10px;
+  margin-left: 10%;
   text-transform: capitalize;
 }
 
@@ -13310,7 +13311,7 @@ h4 {
 }
 
 .note span {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .padding .shadow:nth-of-type(1) {
@@ -13473,7 +13474,7 @@ h4 {
   height: 29px;
   color: #fff !important;
   font-weight: 900 !important;
-  font-size: 18px !important;
+  font-size: 16px !important;
   background: transparent;
   line-height: 18px;
 }
@@ -13509,7 +13510,7 @@ h4 {
 }
 
 .cols {
-  background-color: #df3b1e;
+  background-color: #fe2b32;
   margin: 0 10px;
   position: relative;
 }
@@ -13549,16 +13550,16 @@ h4 {
 }
 
 .answered {
-  color: #f67a1f !important;
+  color: #a8c831 !important;
 }
 
 .pending {
-  color: #c81e47 !important;
+  color: #ff2a32 !important;
 }
 
 .questions .questioning,
 .questions .questionings {
-  height: 20px;
+  height: 60px;
   width: auto;
   display: flex;
   justify-content: center;
@@ -13578,7 +13579,8 @@ h4 {
   margin-top: 10px;
   margin-left: 10px;
   background-color: #378daf;
-  font-size: 10px;
+  font-size: 13px;
+  font-weight: 900 !important;
 }
 
 .question-list li {
@@ -13590,6 +13592,7 @@ h4 {
   border-bottom-left-radius: 5px;
   position: relative;
   font-size: 12px;
+  font-weight: 900;
   color: #8c8a84;
 }
 
@@ -13647,7 +13650,7 @@ li.active .round {
   border-radius: 50%;
   margin: 0;
   color: #fff;
-  background-color: #009593;
+  background-color: #ff2a32;
   position: relative;
 }
 
@@ -13655,7 +13658,7 @@ li.active .round {
   content: "";
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
-  border-bottom: 10px solid #009593;
+  border-bottom: 10px solid #64d2e1;
   /*border-bottom: 10px solid #000000;*/
   position: absolute;
   top: -8px;
@@ -13700,11 +13703,11 @@ li.active .round {
 }
 
 .progress-one p {
-  color: #f67a1f;
+  color: #a8c831;
 }
 
 .progress-two p {
-  color: #c81e47;
+  color: #ff2a32;
 }
 
 .questions {
@@ -13785,11 +13788,10 @@ li.active .round {
   justify-content: center;
   border-radius: 50%;
   margin: 10px 0;
-  background-color: #c81e47;
+  background-color: #ff2a32;
   color: #fff !important;
 }
 
 .solved {
-  background-color: #f67a1f !important;
-  color: black;
+  background-color: #a8c831 !important;
 }
