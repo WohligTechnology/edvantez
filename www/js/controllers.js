@@ -35,7 +35,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
   })
 
   .controller('RegisteringCtrl', function ($scope, $ionicPlatform, $rootScope, $state, $location, $ionicPopup, Chats, $stateParams, $timeout, $ionicModal) {
-
+    var flag = 0;
     $scope.id = $stateParams.id
     Chats.singleTest($scope.id, function (data) {
       $scope.test = data.data;
@@ -66,7 +66,6 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
             /************timer functionality*************/
             var duration = parseInt($scope.timeing);
             t = duration * 60;
-
             $rootScope.hours;
             $rootScope.minutes;
             $rootScope.seconds;
@@ -89,6 +88,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
               $rootScope.seconds--;
               if ($rootScope.seconds == 0 && $rootScope.minutes == 0 && $rootScope.hours == 0) {
                 $timeout.cancel(mytimeout)
+                flag = 1
                 $rootScope.rd();
               }
             }
@@ -121,23 +121,38 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
 
               })
               //deregisterBackButton = $ionicPlatform.registerBackButtonAction(function (e) {}, 401);
+              if (flag == 1) {
+                $rootScope.modal = $ionicPopup.show({
+                  templateUrl: 'templates/modals/time.html',
+                  scope: $rootScope,
+                  animation: 'fadeInUp',
 
-              $rootScope.modal = $ionicPopup.show({
-                templateUrl: 'templates/modals/time.html',
-                scope: $rootScope,
-                animation: 'fadeInUp',
+                })
+                $rootScope.modal.then(function (res) {
+                  console.log("running backhalt")
+                  //deregisterBackButton();
+                });
 
-              })
-              $rootScope.modal.then(function (res) {
-                console.log("running backhalt")
-                //deregisterBackButton();
-              });
+                $rootScope.modal.then(function (modal) {
+                  $rootScope.modal = modal;
+                });
 
-              $rootScope.modal.then(function (modal) {
-                $rootScope.modal = modal;
-              });
+              } else {
+                $rootScope.modal = $ionicPopup.show({
+                  templateUrl: 'templates/modals/onsubmit.html',
+                  scope: $rootScope,
+                  animation: 'fadeInUp',
 
+                })
+                $rootScope.modal.then(function (res) {
+                  console.log("running backhalt")
+                  //deregisterBackButton();
+                });
 
+                $rootScope.modal.then(function (modal) {
+                  $rootScope.modal = modal;
+                });
+              }
             }
 
             /**********************timer ends*********************/
@@ -230,11 +245,11 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
       $scope.checkSolvedQuestions = function (question) {
         $scope.check = Chats.checkAttempted(question);
         if ($scope.check != null && $scope.currentquestion.question == question.question) {
-          return "solved active";
+          return "solved actived";
         } else if ($scope.check != null && $scope.currentquestion.question != question.question) {
           return "solved";
         } else if ($scope.check == null && $scope.currentquestion.question == question.question) {
-          return "active";
+          return "actived";
         }
       }
     } else {
@@ -309,7 +324,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
         })
       }, 100)
     })
-    $ionicPlatform.registerBackButtonAction(function (e) {}, 401);
+    //$ionicPlatform.registerBackButtonAction(function (e) {}, 401);
   })
 
 

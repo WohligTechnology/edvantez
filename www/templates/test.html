@@ -128,9 +128,14 @@
       <div class="slide-arrows pull-left ">
         <i class="ion-ios-arrow-back "></i>
       </div>
+
       <ul class="list-inline " ng-repeat="questions in chquestions | limitTo:1 " ng-init="ind1=($index) ">
-        <li ng-repeat="question in questions " ng-class="checkSolvedQuestions(question)" ng-click="questionchange(question,ind1,$index) "
-          ng-init="ind2=$index; series=(ind1*10)+ind2+1 ">{{series}}</li>
+        <li ng-repeat="question in questions | limitTo:6" ng-class="checkSolvedQuestions(question)" ng-click="questionchange(question,ind1,$index) "
+          ng-init=" ind2=$index; series=(ind1*10)+ind2+1 ">
+          <div class="active-arrow">
+            <div class="ps-relative">
+              <img src="img/Arrow2.png" ng-if="((checkSolvedQuestions(question))=='actived')||((checkSolvedQuestions(question))=='solved actived')">              </div>
+          </div>{{series}}</li>
       </ul>
       <div class="slide-arrows pull-right ">
         <i class="ion-ios-arrow-forward "></i>
