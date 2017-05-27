@@ -34,7 +34,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
 
   })
 
-  .controller('RegisteringCtrl', function ($scope, $ionicPlatform, $rootScope, $state, $location, $ionicPopup, Chats, $stateParams, $timeout, $ionicModal) {
+  .controller('RegisteringCtrl', function ($scope, $window, $ionicPlatform, $rootScope, $state, $location, $ionicPopup, Chats, $stateParams, $timeout, $ionicModal) {
     var flag = 0;
     $scope.id = $stateParams.id
     Chats.singleTest($scope.id, function (data) {
@@ -95,6 +95,12 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
             var mytimeout = $timeout($rootScope.onTimeout, 1000);
             /* timer function ends */
 
+            $rootScope.showconfirmbox = function () {
+              if ($window.confirm("Do you want to continue?"))
+                $rootScope.rd();
+              else
+                $scope.result = "No";
+            }
             /* function to close modal popup */
             $rootScope.closePopup = function () {
               $rootScope.modal.close();
@@ -203,12 +209,13 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
       $scope.questionno = 1
     }
     if (status == true) {
-      $scope.chquestions = _.chunk($scope.testdetails.questionSet, 10); //checks for user login
-      console.log($scope.chquestions);
-
-      $scope.questionchange = function (question, ind1, ind2) { //selecting question from test page
+      //$scope.chquestions = _.chunk($scope.testdetails.questionSet, 10); //checks for user login
+      //console.log($scope.chquestions);
+      $scope.questions = $scope.testdetails.questionSet;
+      $scope.questionchange = function (question, ind1) { //selecting question from test page
         $scope.currentquestion = question;
-        $scope.questionno = ind1 * 10 + ind2 + 1;
+        //$scope.questionno = ind1 * 10 + ind2 + 1;
+        $scope.questionno = ind1 + 1
         $scope.activeButton = Chats.checkAttempted($scope.currentquestion);
       }
       $scope.activeButton = Chats.checkAttempted($scope.currentquestion);
@@ -250,6 +257,28 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
           return "solved";
         } else if ($scope.check == null && $scope.currentquestion.question == question.question) {
           return "actived";
+        }
+      }
+      //$scope.chquestions = _.chunk($scope.testdetails.questionSet, 10);
+      $scope.previous = function (ind) {
+        if (ind > 1) {
+          $scope.questionno = ind - 1;
+          $scope.currentquestion = $scope.testdetails.questionSet[ind - 2];
+          //console.log($scope.currentquestion);
+        } else {
+          $scope.currentquestion = $scope.testdetails.questionSet[0];
+          $scope.questionno = 1;
+        }
+      }
+      $scope.next = function (ind) {
+        var len = $scope.testdetails.questionSet.length;
+        if (ind < len) {
+          $scope.questionno = ind + 1;
+          $scope.currentquestion = $scope.testdetails.questionSet[ind];
+          //console.log($scope.currentquestion);
+        } else {
+          $scope.currentquestion = $scope.testdetails.questionSet[len - 1];
+          $scope.questionno = len;
         }
       }
     } else {

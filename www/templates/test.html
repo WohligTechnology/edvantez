@@ -125,20 +125,20 @@
       </div>-->
     </div>
     <div class="sliders text-center ">
-      <div class="slide-arrows pull-left ">
-        <i class="ion-ios-arrow-back "></i>
+      <div class="slide-arrows pull-left">
+        <i class="ion-ios-arrow-back " ng-click="previous(questionno)"></i>
       </div>
 
-      <ul class="list-inline " ng-repeat="questions in chquestions | limitTo:1 " ng-init="ind1=($index) ">
-        <li ng-repeat="question in questions | limitTo:6" ng-class="checkSolvedQuestions(question)" ng-click="questionchange(question,ind1,$index) "
-          ng-init=" ind2=$index; series=(ind1*10)+ind2+1 ">
+      <ul class="list-inline ">
+        <li ng-repeat="question in questions | limitTo:6" ng-class="checkSolvedQuestions(question)" ng-click="questionchange(question,$index) ">
+          {{$index+1}}
           <div class="active-arrow">
             <div class="ps-relative">
               <img src="img/Arrow2.png" ng-if="((checkSolvedQuestions(question))=='actived')||((checkSolvedQuestions(question))=='solved actived')">              </div>
           </div>{{series}}</li>
       </ul>
       <div class="slide-arrows pull-right ">
-        <i class="ion-ios-arrow-forward "></i>
+        <i class="ion-ios-arrow-forward " ng-click="next(questionno)"></i>
       </div>
       <!-- <ion-slide-box delegate-handle="third " >
              <ion-slide ng-repeat="party in hostParty track by $index ">
@@ -151,6 +151,6 @@
     
            </ion-slide-box> -->
     </div>
-    <button class="button button-full button-assertive " ng-click="rd() " color="danger ">Submit</button>
+    <button class="button button-full button-assertive " ng-click="showconfirmbox()" color="danger ">Submit</button>
   </ion-content>
 </ion-view>
