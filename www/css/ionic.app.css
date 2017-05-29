@@ -13635,12 +13635,49 @@ li.active .round {
   left: -15px;
 }
 
-.list-inline {
-  display: inline-block;
+.flexslider {
+  margin: 0 !important;
+  padding: 0 45px !important;
+}
+
+.flex-control-nav.flex-control-paging {
+  display: none !important;
+}
+
+
+/*.flex-direction-nav .flex-prev {
+  opacity: 1 !important;
+  left: 10px;
+  z-index: 9999;
+}
+
+.flex-direction-nav .flex-next {
+  opacity: 1 !important;
+  right: 10px;
+  z-index: 9999;
+}*/
+
+.flex-direction-nav a:before {
+  font-size: 20px !important;
+}
+
+.flex-direction-nav a {
+  height: 20px !important;
+}
+
+
+/*.flex-disabled {
+  opacity: 1 !important;
+  z-index: 9999;
+}*/
+
+.slides {
+  display: inline-block !important;
+  margin: 35px auto!important;
   /* li:nth-of-type(4)*/
 }
 
-.list-inline li {
+.slides li {
   /*width: 30px;
   height: 30px;
   display: inline-block;
@@ -13652,20 +13689,20 @@ li.active .round {
   color: #fff;
   background-color: #ff2a32;
   position: relative;*/
-  position: relative;
-  width: 30px;
-  height: 18.32px;
+  position: relative !important;
+  /*height: 18.32px;*/
   /* background-color: #ffffff; */
-  margin: 18.66px 6px;
+  /*margin: 18.66px 6px;*/
   border-left: solid 3px #ff2a32;
   border-right: solid 3px #ff2a32;
   padding: 1px;
   font-size: 13px;
   display: inherit;
+  width: 30px !important;
 }
 
-.list-inline li:before,
-.list-inline li:after {
+.slides li:before,
+.slides li:after {
   content: "";
   position: absolute;
   z-index: 1;
@@ -13678,20 +13715,20 @@ li.active .round {
   left: 1.3934px;
 }
 
-.list-inline li:before {
+.slides li:before {
   top: -10.6066px;
   border-top: solid 4.2426px #ff2a32;
   border-right: solid 4.2426px #ff2a32;
 }
 
-.list-inline li:after {
+.slides li:after {
   bottom: -10.6066px;
   border-bottom: solid 4.2426px #ff2a32;
   border-left: solid 4.2426px #ff2a32;
 }
 
 
-/*.list-inline li.active:before {
+/*.slides li.active:before {
   content: "";
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
@@ -13903,6 +13940,6 @@ li.active .round {
 
 .ps-relative {
   position: absolute;
-  top: -51px;
-  right: 6px;
+  top: -49px;
+  right: 7px;
 }

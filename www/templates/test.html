@@ -12,7 +12,7 @@
 
   </ion-nav-div> -->
   </ion-nav-bar>
-  <ion-content>
+  <ion-content on-swipe-left="next(questionno)" on-swipe-right="previous(questionno)">
     <div class="time">
       <div class="row">
         <div class="col col-25 text-center">
@@ -40,59 +40,62 @@
         </div>
       </div>
 
-
-      <div class="row note">
-        <div class="col text-center">
-          <span class="answered">Questions Answered</span>
-          <div class="progress-bar progress-one">
-            <p>{{qd.questionanswered}}</p>
-            <ion-radial-progress timer="60" color="'#ff0000'" backgroundColor="'#00ffff'"></ion-radial-progress>
-            <div round-progress max="qd.totalquestions" current="qd.questionanswered" color="#a8c831" bgcolor="#eaeaea" radius="30" stroke="3"
-              semi="false" rounded="true" clockwise="true" responsive="false" iterations="50" animation="easeInOutQuart"></div>
+      <div>
+        <div class="row note">
+          <div class="col text-center">
+            <span class="answered">Questions Answered</span>
+            <div class="progress-bar progress-one">
+              <p>{{qd.questionanswered}}</p>
+              <ion-radial-progress timer="60" color="'#ff0000'" backgroundColor="'#00ffff'"></ion-radial-progress>
+              <div round-progress max="qd.totalquestions" current="qd.questionanswered" color="#a8c831" bgcolor="#eaeaea" radius="30" stroke="3"
+                semi="false" rounded="true" clockwise="true" responsive="false" iterations="50" animation="easeInOutQuart"></div>
+            </div>
           </div>
-        </div>
-        <div>
-          <button class="button button-small " style="background-color:#f0b618; color:white; margin-top:40px;" ui-sref="questionare">Preview</button>
-        </div>
-        <div class="col text-center ">
-          <span class="pending ">Questions Pending</span>
-          <div class="progress-bar progress-two ">
-            <p>{{qd.remaining}}</p>
-            <ion-radial-progress timer="60 " color=" '#ff0000' " backgroundColor=" '#00ffff' "></ion-radial-progress>
-            <div round-progress max="qd.totalquestions " current="qd.remaining " color="#ff2a32 " bgcolor="#eaeaea
+          <div>
+            <button class="button button-small " style="background-color:#f0b618; color:white; margin-top:40px;" ui-sref="questionare">Preview</button>
+          </div>
+          <div class="col text-center ">
+            <span class="pending ">Questions Pending</span>
+            <div class="progress-bar progress-two ">
+              <p>{{qd.remaining}}</p>
+              <ion-radial-progress timer="60 " color=" '#ff0000' " backgroundColor=" '#00ffff' "></ion-radial-progress>
+              <div round-progress max="qd.totalquestions " current="qd.remaining " color="#ff2a32 " bgcolor="#eaeaea
           " radius="30 " stroke="3 " semi="false " rounded="true " clockwise="true " responsive="false " iterations="50 "
-              animation="easeInOutQuart "></div>
+                animation="easeInOutQuart "></div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="questions ">
-      <div class="question-options ">
-        <div class="row ">
-          <div class="col-10 ">
-            <p class="questioning ">
-              Q:{{questionno}}
-            </p>
+
+      <div class="questions ">
+        <div class="question-options ">
+          <div class="row ">
+            <div class="col-10 ">
+              <p class="questioning ">
+                Q:{{questionno}}
+              </p>
+            </div>
+            <div class="col ">
+              <p class="questionings ">
+                {{currentquestion.question}}
+              </p>
+            </div>
           </div>
-          <div class="col ">
-            <p class="questionings ">
-              {{currentquestion.question}}
-            </p>
-          </div>
-        </div>
-        <div class="row ">
-          <div class="col-offset-10 "></div>
-          <div class="col-80 ">
-            <ul class="question-list ">
-              <li ng-click="selection( 'a', currentquestion.question,currentquestion.marks1, currentquestion.option1)
+
+          <div class="row ">
+            <div class="col-offset-10 "></div>
+            <div class="col-80 ">
+              <ul class="question-list ">
+                <li ng-click="selection( 'a', currentquestion.question,currentquestion.marks1, currentquestion.option1)
           " ng-class="{ 'active':activeButton=='a' } "><span class="round ">A</span>{{currentquestion.option1}}</li>
-              <li ng-click="selection( 'b' ,currentquestion.question,currentquestion.marks2, currentquestion.option2)
+                <li ng-click="selection( 'b' ,currentquestion.question,currentquestion.marks2, currentquestion.option2)
           " ng-class="{ 'active':activeButton=='b' } "><span class="round ">B</span>{{currentquestion.option2}}</li>
-              <li ng-click="selection( 'c', currentquestion.question,currentquestion.marks3, currentquestion.option3)
+                <li ng-click="selection( 'c', currentquestion.question,currentquestion.marks3, currentquestion.option3)
           " ng-class="{ 'active':activeButton=='c' } "><span class="round ">C</span>{{currentquestion.option3}}</li>
-              <li ng-click="selection( 'd', currentquestion.question,currentquestion.marks4, currentquestion.option4)
+                <li ng-click="selection( 'd', currentquestion.question,currentquestion.marks4, currentquestion.option4)
           " ng-class="{ 'active':activeButton=='d' } "><span class="round ">D</span>{{currentquestion.option4}}</li>
-            </ul>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -125,21 +128,25 @@
       </div>-->
     </div>
     <div class="sliders text-center ">
-      <div class="slide-arrows pull-left">
+      <!--<div class="slide-arrows pull-left">
         <i class="ion-ios-arrow-back " ng-click="previous(questionno)"></i>
-      </div>
+      </div>-->
 
-      <ul class="list-inline ">
-        <li ng-repeat="question in questions | limitTo:6" ng-class="checkSolvedQuestions(question)" ng-click="questionchange(question,$index) ">
+      <!--<ul class=" ">-->
+      <flex-slider class="carousel " animation="slide" flex-slide="question in questions track by $index" animation-loop="false"
+        item-margin="20" slideshow="false" item-width="35">
+        <li ng-class="checkSolvedQuestions(question)" ng-click="questionchange(question,$index) ">
           {{$index+1}}
           <div class="active-arrow">
             <div class="ps-relative">
               <img src="img/Arrow2.png" ng-if="((checkSolvedQuestions(question))=='actived')||((checkSolvedQuestions(question))=='solved actived')">              </div>
           </div>{{series}}</li>
-      </ul>
-      <div class="slide-arrows pull-right ">
+      </flex-slider>
+
+      <!--</ul>-->
+      <!--<div class="slide-arrows pull-right ">
         <i class="ion-ios-arrow-forward " ng-click="next(questionno)"></i>
-      </div>
+      </div>-->
       <!-- <ion-slide-box delegate-handle="third " >
              <ion-slide ng-repeat="party in hostParty track by $index ">
                <span class="round ">{{party.data}}</span>

@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['angular-svg-round-progressbar'])
+angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
 
   .controller('DashCtrl', function ($scope, $state, $ionicPlatform, Chats, $templateCache, $ionicHistory) {
     // $ionicHistory.clearCache();
@@ -20,7 +20,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
   })
 
 
-  .controller('MobileCtrl', function ($scope, $location) {
+  .controller('MobileCtrl', function ($scope, $state) {
 
     $scope.submitcontact = function (contact) {
 
@@ -28,7 +28,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
         $scope.msg = "Error: <span>Please enter valid mobile number < having 10 digits / containing only number / starting with 3,7,8 or 9></span>"
       } else {
         $.jStorage.set("contact", contact);
-        $location.path("\otp");
+        $state.go("otp");
       }
     }
 
@@ -199,7 +199,9 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
   .controller('TestCtrl', function ($scope, $rootScope, $ionicPlatform, $ionicPopup, Chats, $stateParams, $state, $timeout, $location, $ionicModal) {
     // $ionicPlatform.registerBackButtonAction(function (e) {}, 401);
     $scope.testdetails = $.jStorage.get("testdetails");
-    $rootScope.qd = Chats.questiondetails();
+    // var flexslider = $('.flexslider');
+    console.log("qd from out")
+    $scope.qd = Chats.questiondetails();
     var status = $.jStorage.get("login");
     if ($stateParams.allquest != null) { //question selected from questionarie page
       $scope.currentquestion = $stateParams.allquest;
@@ -219,7 +221,37 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
         $scope.activeButton = Chats.checkAttempted($scope.currentquestion);
       }
       $scope.activeButton = Chats.checkAttempted($scope.currentquestion);
-      $scope.selection = function (selected, qust, marks, opt) { //reultarray creation
+      /**************function for swipe right*****************/
+      $scope.previous = function (ind) {
+        if (ind > 1) {
+          $scope.questionno = ind - 1;
+          $scope.currentquestion = $scope.testdetails.questionSet[ind - 2];
+
+
+        } else {
+          $scope.currentquestion = $scope.testdetails.questionSet[0];
+          $scope.questionno = 1;
+        }
+        $scope.activeButton = Chats.checkAttempted($scope.currentquestion);
+
+      }
+      /**************function for swipe left**************/
+      $scope.next = function (ind) {
+        var len = $scope.testdetails.questionSet.length;
+        if (ind < len) {
+          $scope.questionno = ind + 1;
+          $scope.currentquestion = $scope.testdetails.questionSet[ind];
+
+        } else {
+          $scope.currentquestion = $scope.testdetails.questionSet[len - 1];
+          $scope.questionno = len;
+        }
+
+        $scope.activeButton = Chats.checkAttempted($scope.currentquestion);
+
+      }
+      /************function for entering selection to result array***************/
+      $scope.selection = function (selected, qust, marks, opt) {
         var result = _.find($rootScope.resultarr, {
           question: qust
         });
@@ -243,12 +275,12 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
             selected: selected
           });
         }
-
+        console.log($rootScope.resultarr)
         $.jStorage.set("resultset", $rootScope.resultarr);
-        $rootScope.qd = Chats.questiondetails();
-
+        $scope.qd = Chats.questiondetails();
+        console.log($scope.qd)
       }
-      //endof reultarray creation
+      /**************function for checking solved and active question***************/
       $scope.checkSolvedQuestions = function (question) {
         $scope.check = Chats.checkAttempted(question);
         if ($scope.check != null && $scope.currentquestion.question == question.question) {
@@ -257,28 +289,6 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
           return "solved";
         } else if ($scope.check == null && $scope.currentquestion.question == question.question) {
           return "actived";
-        }
-      }
-      //$scope.chquestions = _.chunk($scope.testdetails.questionSet, 10);
-      $scope.previous = function (ind) {
-        if (ind > 1) {
-          $scope.questionno = ind - 1;
-          $scope.currentquestion = $scope.testdetails.questionSet[ind - 2];
-          //console.log($scope.currentquestion);
-        } else {
-          $scope.currentquestion = $scope.testdetails.questionSet[0];
-          $scope.questionno = 1;
-        }
-      }
-      $scope.next = function (ind) {
-        var len = $scope.testdetails.questionSet.length;
-        if (ind < len) {
-          $scope.questionno = ind + 1;
-          $scope.currentquestion = $scope.testdetails.questionSet[ind];
-          //console.log($scope.currentquestion);
-        } else {
-          $scope.currentquestion = $scope.testdetails.questionSet[len - 1];
-          $scope.questionno = len;
         }
       }
     } else {
@@ -316,13 +326,6 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar'])
 
     Chats.findResult($scope.resultid, function (data) {
       $scope.resultdetails = data.data;
-      /*$ionicPlatform.registerBackButtonAction(function (event) {
-        if ($state.is('tab.dash')) {
-          ionic.Platform.exitApp();
-        } else {
-          event.preventDefault();
-        }
-      }, 100);*/
       $scope.testid = data.data.testName;
 
       $timeout(function () {
