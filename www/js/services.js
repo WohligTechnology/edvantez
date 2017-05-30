@@ -114,8 +114,18 @@ angular.module('starter.services', [])
         } else {
           return null;
         }
-      }
-
+      },
+      getUser: function (id, callback) {
+        var data = {
+          _id: id
+        }
+        $http({
+          url: adminurl + 'User/getUser',
+          method: 'POST',
+          //withCredentials: false,
+          data: data,
+        }).success(callback);
+      },
 
     }
   });

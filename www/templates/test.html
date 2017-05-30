@@ -70,14 +70,15 @@
       <div class="questions ">
         <div class="question-options ">
           <div class="row ">
-            <div class="col-10 ">
+            <!--<div class="col-10 ">
               <p class="questioning ">
                 Q:{{questionno}}
               </p>
-            </div>
+            </div>-->
             <div class="col ">
-              <p class="questionings ">
-                {{currentquestion.question}}
+
+              <p class="questionings">
+                Q:{{questionno}} {{currentquestion.question}}
               </p>
             </div>
           </div>
@@ -134,7 +135,7 @@
 
       <!--<ul class=" ">-->
       <flex-slider class="carousel " animation="slide" flex-slide="question in questions track by $index" animation-loop="false"
-        item-margin="20" slideshow="false" item-width="35">
+        item-margin="10" slideshow="false" item-width="35">
         <li ng-class="checkSolvedQuestions(question)" ng-click="questionchange(question,$index) ">
           {{$index+1}}
           <div class="active-arrow">

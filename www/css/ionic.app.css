@@ -13559,7 +13559,7 @@ h4 {
 
 .questions .questioning,
 .questions .questionings {
-  height: 60px;
+  height: auto;
   width: auto;
   display: flex;
   justify-content: center;
@@ -13942,4 +13942,19 @@ li.active .round {
   position: absolute;
   top: -49px;
   right: 7px;
+}
+
+.username {
+  position: relative !important;
+  bottom: -90px;
+  left: 34%;
+}
+
+.userrelative {
+  position: absolute !important;
+  transform: translate(-50%, -50%) !important;
+  overflow: initial !important;
+  left: 46%;
+  top: 26%;
+  font-size: x-large;
 }
