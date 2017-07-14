@@ -10399,3 +10399,54 @@ li.active .round {
 
 .mar {
   margin: 8px !important; }
+
+.slides {
+  display: inline-block !important;
+  margin: 35px auto !important;
+  /* li:nth-of-type(4)*/ }
+
+.slides li {
+  /*width: 30px;
+height: 30px;
+display: inline-block;
+padding-top: 5px;
+align-items: center;
+justify-content: center;
+border-radius: 50%;
+margin: 0;
+color: #fff;
+background-color: #ff2a32;
+position: relative;*/
+  position: relative !important;
+  /*height: 18.32px;*/
+  /* background-color: #ffffff; */
+  /*margin: 18.66px 6px;*/
+  border-left: solid 3px #ff2a32;
+  border-right: solid 3px #ff2a32;
+  padding: 1px;
+  font-size: 13px;
+  display: inherit;
+  width: 30px !important; }
+
+.slides li:before,
+.slides li:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 21.21px;
+  height: 21.21px;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background-color: inherit;
+  left: 1.3934px; }
+
+.slides li:before {
+  top: -10.6066px;
+  border-top: solid 4.2426px #ff2a32;
+  border-right: solid 4.2426px #ff2a32; }
+
+.slides li:after {
+  bottom: -10.6066px;
+  border-bottom: solid 4.2426px #ff2a32;
+  border-left: solid 4.2426px #ff2a32; }
