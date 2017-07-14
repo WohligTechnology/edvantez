@@ -1,7 +1,17 @@
 angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
 
-  .controller('DashCtrl', function ($scope, $state, $ionicPlatform, Chats, $templateCache, $ionicHistory) {
+  .controller('DashCtrl', function ($scope, $state, $ionicPlatform, Chats, $templateCache, $ionicHistory, $ionicPopover) {
+$ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
+            scope: $scope,
+            cssClass: 'menupop',
 
+        }).then(function(popover) {
+            $scope.popover = popover;
+        });
+
+        $scope.closePopover = function() {
+            $scope.popover.hide();
+        };
     $ionicPlatform.registerBackButtonAction(function (e) {
       if ($state.current.name == 'tab.dash') {
         ionic.Platform.exitApp();
@@ -17,7 +27,18 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
   })
 
 
-  .controller('MobileCtrl', function ($scope, $state) {
+  .controller('MobileCtrl', function ($scope, $state, $ionicPopover) {
+$ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
+            scope: $scope,
+            cssClass: 'menupop',
+
+        }).then(function(popover) {
+            $scope.popover = popover;
+        });
+
+        $scope.closePopover = function() {
+            $scope.popover.hide();
+        };
 
     $scope.submitcontact = function (contact) {
 
@@ -153,7 +174,19 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
     }
   })
 
-  .controller('OtpCtrl', function ($scope, $location) {
+  .controller('OtpCtrl', function ($scope, $location, $ionicPopover) {
+    $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
+            scope: $scope,
+            cssClass: 'menupop',
+
+        }).then(function(popover) {
+            $scope.popover = popover;
+        });
+
+        $scope.closePopover = function() {
+            $scope.popover.hide();
+        };
+
     $scope.contact = $.jStorage.get("contact")
     var verify = false;
     $scope.onsubmit = function () {
@@ -297,7 +330,18 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
 
   })
 
-  .controller('ChatsCtrl', function ($scope, $ionicPlatform, $state, Chats, $timeout, $templateCache, $ionicHistory) {
+  .controller('ChatsCtrl', function ($scope, $ionicPlatform, $state, Chats, $timeout, $templateCache, $ionicHistory, $ionicPopover) {
+    $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
+            scope: $scope,
+            cssClass: 'menupop',
+
+        }).then(function(popover) {
+            $scope.popover = popover;
+        });
+
+        $scope.closePopover = function() {
+            $scope.popover.hide();
+        };
     $scope.resultid = $.jStorage.get("resultid");
     /*$scope.username1 = "Bhargav";
     $scope.username2 = "Purohit"*/

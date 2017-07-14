@@ -74,10 +74,21 @@ it manually.</span></p>
 </ion-view>
 -->
 
-<ion-view hide-nav-bar="true" class="bg-green">
+<ion-view hide-nav-bar="false" class="bg-green">
+  <ion-view  title="">
+    <ion-nav-bar class="bar-stable schedule-bar  nav-height">
+        <ion-nav-buttons side="left">
+           
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <button class="button button-clear ion-navicon-round menuBtn" ng-click="popover.show($event)">
+        </button>
+            
+        </ion-nav-buttons>
+    </ion-nav-bar>
   <ion-content>
     <div class="logo-img">
-      <img src="img/mobile/logo-white.png" alt="Logo">
+      <img src="img/Logo_png.png" alt="Logo">
     </div>
     <div class="forms">
       <form action="">

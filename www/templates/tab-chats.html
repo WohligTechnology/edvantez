@@ -1,17 +1,24 @@
 <ion-view class="otps">
+   <div class="bar bar-header bar-light header-bottom ">
+<h1 class="title mar login-bar navcentericon"><img src="img/smallImg.png" alt="logo" ui-sref="tab.dash">
+</div>
+ <!--<ion-nav-buttons side="right">
+            <button class="button button-clear ion-navicon-round menuBtn" ng-click="popover.show($event)">
+        </button>
+            
+        </ion-nav-buttons>-->
   <ion-nav-bar class="bar-positive bar-color ">
-    <!--<ion-nav-back-button>
-    </ion-nav-back-button>-->
+  
     <ion-nav-buttons side="left">
-      <a href="#/tab/dash">
-        <img src="img/menu/edu.png" alt="logo">
-      </a>
+      <div class="headerlogo"> 
+<!--<img src="img/menu/navlogo.png" alt="logo" ui-sref="tab.dash">-->
+      </div>
     </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-      <button class="button button-icon button-clear">
-        <img src="img/menu/search.png" alt="search">
-      </button>
-    </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+            <button class="button button-clear ion-navicon-round menuBtn" ng-click="popover.show($event)">
+        </button>
+            
+        </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content class="padding">
     <div class="shadow shadows">
@@ -41,10 +48,11 @@
         margin-left: 56px;
     font-size: x-large !important;
 ">biggest </span>-->
-          <p>ET01 | {{testname}}</p>
-          <img src="img/certificate/certi.jpg">
-        </div>
 
+          
+          <img src="img/Certificate.jpg">
+        </div>
+<div class="bgforgradient"><p>ET01 | {{testname}}</p> </div>
         <div class="info">
           <div class="certificate-info">
             <div class="row">
