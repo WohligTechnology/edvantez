@@ -1,0 +1,177 @@
+<ion-view view-title="" class="logo-center yes-title">
+  <ion-nav-bar class="bar-positive bar-color ">
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear" ui-sref="test">
+      <span> <i class="ion-ios-arrow-back"></i></span>
+      </button>
+    </ion-nav-buttons>
+    <!-- <ion-nav-div >
+      <div class="button button-icon button-clear" >
+      <img src="img/menu/edu.png" alt="logo">
+    </div>
+
+  </ion-nav-div> -->
+  </ion-nav-bar>
+  <ion-content>
+    <div class="time">
+      <div class="row">
+        <div class="col col-25 text-center">
+          <p ng-click="filters();">
+            Time Left{{m}}
+          </p>
+        </div>
+        <div ng-view> </div>
+        <div class="col ">
+          <div class="row">
+            <div class="col cols text-center">
+              <p>{{hours}}</p>
+              <div class="dots"></div>
+              <div class="dots"></div>
+            </div>
+            <div class="col cols text-center">
+              <p>{{minutes}}</p>
+              <div class="dots"></div>
+              <div class="dots"></div>
+            </div>
+            <div class="col cols text-center">
+              <p>{{seconds}}</p>
+            </div>
+          </div>
+        </div>
+        <div ui-view="modal" autoscroll="false"></div>
+      </div>
+      <div class="row note">
+        <div class="col text-center">
+          <span class="answered">Questions Answered</span>
+          <div class="progress-bar progress-one">
+            <p>{{qd.questionanswered}}</p>
+            <ion-radial-progress timer="60" color="'#ff0000'" backgroundColor="'#00ffff'"></ion-radial-progress>
+            <div round-progress max="qd.totalquestions" current="qd.questionanswered" color="#a8c831" bgcolor="#eaeaea" radius="30" stroke="3"
+              semi="false" rounded="true" clockwise="true" responsive="false" iterations="50" animation="easeInOutQuart"></div>
+          </div>
+        </div>
+        <div class="col text-center">
+          <span class="pending">Questions Pending</span>
+          <div class="progress-bar progress-two">
+            <p>{{qd.remaining}}</p>
+            <ion-radial-progress timer="60" color="'#ff0000'" backgroundColor="'#00ffff'"></ion-radial-progress>
+            <div round-progress max="qd.totalquestions" current="qd.remaining" color="#ff2a32" bgcolor="#eaeaea" radius="30" stroke="3"
+              semi="false" rounded="true" clockwise="true" responsive="false" iterations="50" animation="easeInOutQuart"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--<div class="questions">
+      <div class="question-options">
+        <div class="row">
+          <div class="col-10">
+            <p class="questioning">
+              Q.16
+            </p>
+          </div>
+          <div class="col">
+            <p class="questionings">
+              If you want your company to be successful, it’s most important to strive for
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-offset-10"></div>
+          <div class="col-80">
+  <ul class="question-list">
+    <li ng-click="activeButton = 'a'" ng-class="{ 'active': activeButton == 'a' }"><span class="round">A</span>To be the lowest cost producer</li>
+    <li ng-click="activeButton = 'b'" ng-class="{'active':activeButton =='b'}"><span class="round">B</span>To be the most profitable company</li>
+    <li ng-click="activeButton = 'c'" ng-class="{'active':activeButton =='c'}"><span class="round">C</span>To be the best known brand</li>
+    <li ng-click="activeButton = 'd'" ng-class="{ 'active':activeButton == 'd'}"><span class="round">D</span>To be the sole provider of something
+  people really want</li>
+  <li ng-click="activeButton = 'e'" ng-class="{ 'active':activeButton == 'e'}"><span class="round">E</span>To have the largest customer base</li>
+  </ul>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+<div class="sliders text-center">
+  <div class="slide-arrows  pull-left">
+          <i class="ion-ios-arrow-back"></i>
+  </div>testreg({id: x._id})
+  <ul class="list-inline">
+    <li>13</li>
+    <li>14</li>
+    <li>15</li>
+    <li>16</li>
+    <li>17</li>
+    <li>18</li>
+    <li>19</li>
+  </ul>
+  <div class="slide-arrows pull-right">
+          <i class="ion-ios-arrow-forward"></i>
+  </div>
+
+</div>-->
+    <div class="questionare">
+      <ul ng-repeat="questions in chquestions" ng-init="ind1 = $index">
+        <li ng-repeat="question in questions" ng-init="ind2 = $index;series=(ind1*10+ind2+1) " ng-class="checkSolvedQuestions(question)"
+          ui-sref="test ({id: series,allquest: question})">{{series}}</li>
+        <!--<li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>-->
+      </ul>
+      <!--<ul>
+    <li>11</li>
+    <li>12</li>
+    <li>13</li>
+    <li>14</li>
+    <li>15</li>
+    <li>16</li>
+    <li>17</li>
+    <li>18</li>
+    <li>19</li>
+    <li>20</li>
+  </ul>
+   <ul>
+    <li>21</li>
+    <li>22</li>
+    <li>23</li>
+    <li>24</li>
+    <li>25</li>$scope.questionno = (indexarr1*10)+indexarr2+1;
+    <li>26</li>
+    <li>27</li>
+    <li>28</li>
+    <li>29</li>
+    <li>30</li>
+  </ul>
+   <ul>
+    <li>31</li>
+    <li>32</li>
+    <li>33</li>
+    <li>34</li>
+    <li>35</li>
+    <li>36</li>
+    <li>37</li>
+    <li>38</li>
+    <li>39</li>
+    <li>40</li>
+  </ul>
+  <ul>
+    <li>41</li>
+    <li>42</li>
+    <li>43</li>
+    <li>44</li>
+    <li>45</li>
+    <li>46</li>
+    <li>47</li>
+    <li>48</li>
+    <li>49</li>
+    <li>50</li>
+  </ul>-->
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,4 +1,4 @@
-<ion-view view-title="" class="logo-center yes-title" >
+<ion-view view-title="" class="logo-center yes-title">
   <ion-nav-bar class="bar-positive bar-color ">
     <ion-nav-buttons side="left">
       <button class="button button-icon button-clear" ui-sref="tab.dash">
@@ -12,63 +12,86 @@
 
   </ion-nav-div> -->
   </ion-nav-bar>
-  <ion-content >
+  <ion-content>
     <div class="title-div text-center">
-        <p>ET01 | ENTREPRENEURSHIP QUOTIENT</p>
+      <p>ET01 | {{test.name | uppercase}} </p>
     </div>
     <div class="padding register">
-
       <div class="list card">
-      <div class="item test-image">
-        <p>50 Questions | 30 Minutes</p>
-        <img src="img/test/man.jpg">
-      </div>
-<div class="info">
-  <div class="name">
-    <div class="row">
-  <div class="col">
-    <div class="abbr">
-      <label class="item item-input item-select">
-    <select>
-      <option>Mrs</option>
-      <option selected>Mr</option>
-      <option>Miss</option>
-    </select>
-  </label>
-    </div>
-  </div>
-  <div class="col col-75">
-    <div class="name-surname">
-      <label class="item-input-wrapper">
-        <input type="text" placeholder="Full Name">
+        <div class="item test-image">
+          <p>{{numofquestions}} Questions | {{timeing}} Minutes</p>
+          <img src="img/test/man.jpg">
+        </div>
+        <div class="info">
+          <div class="name">
+            <div class="row" style="width:93px">
+              <div class="col">
+                <div class="abbr">
+
+                  <label class="item item-input item-select">
+                  
+                    <select>
+                      <option>Mrs</option>
+                      <option selected>Mr</option>
+                      <option>Miss</option>
+                    </select>
+                   
+                  </label>
+                </div>
+              </div>
+              <!--<div class="col col-75">
+                <div class="name-surname">
+                  <label class="item-input-wrapper">
+        <input type="text" placeholder="Full Name" ng-model="form.firstname">
       </label>
-      <label class="item-input-wrapper">
-        <input type="text" placeholder="Laste Name">
+                  <label class="item-input-wrapper">
+        <input type="text" placeholder="Last Name" ng-model="form.lastname">
       </label>
-    </div>
-  </div>
-</div>
-<div class="row ">
-  <div class="col">
-    <div class="name-surname">
-      <label class="item-input-wrapper">
-   <i class="mail"></i>
-       <input type="email" placeholder="Email">
+                </div>
+              </div>-->
+            </div>
+
+            <div class="row ">
+              <div class="col">
+                <div class="name-surname">
+                  <label class="item-input-wrapper">
+ <!--  <i class="mail" style="background-color:white"></i>-->
+       <input type="text" placeholder="First Name" ng-model="form.firstname">
  </label>
-    </div>
-  </div>
-</div>
-<div class="butn-pull bgs">
-  <button class="button button-stable " ui-sref="test">
+                </div>
+              </div>
+            </div>
+
+            <div class="row ">
+              <div class="col">
+                <div class="name-surname">
+                  <label class="item-input-wrapper">
+ <!--  <i class="mail" style="background-color:white"></i>-->
+       <input type="text" placeholder="Last Name" ng-model="form.lastname">
+ </label>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row ">
+              <div class="col">
+                <div class="name-surname">
+                  <label class="item-input-wrapper">
+ <!--  <i class="mail" style="background-color:white"></i>-->
+       <input type="email" placeholder="Email" ng-pattern = '/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i'  ng-model="form.email">
+ </label>
+                </div>
+              </div>
+            </div>
+            <div class="butn-pull bgs">
+              <button class="button button-stable" id="regbutton" ng-click="submit(form)">
 Take Test
   </button>
-</div>
-  </div>
-
-</div>
-
-    </div>
-    <!-- <div class="list card">
+            </div>
+          </div>
+        </div>
+        <!-- <div class="list card">
     <div class="item test-image">
       <p>ET02 | Are You Job Ready?</p>
       <img src="img/test/man.jpg">
@@ -83,7 +106,8 @@ well attuned you are to the demands of being an entrepreneur.</p>
   </div>
 </div>
   </div> -->
-
-  </div>
+        <p style="text-align: center; color:red">{{errormsg}}</p>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

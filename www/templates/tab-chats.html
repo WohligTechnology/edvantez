@@ -1,70 +1,102 @@
-<ion-view  class="otps">
+<ion-view class="otps">
+   <div class="bar bar-header bar-light header-bottom ">
+<h1 class="title mar login-bar navcentericon"><img src="img/smallImg.png" alt="logo" ui-sref="tab.dash">
+</div>
+ <!--<ion-nav-buttons side="right">
+            <button class="button button-clear ion-navicon-round menuBtn" ng-click="popover.show($event)">
+        </button>
+            
+        </ion-nav-buttons>-->
   <ion-nav-bar class="bar-positive bar-color ">
-    <!--<ion-nav-back-button>
-    </ion-nav-back-button>-->
-    <ion-nav-buttons side="left" >
-      <a href="#/tab/dash">
-          <img src="img/menu/edu.png" alt="logo"  >
-      </a>
+  
+    <ion-nav-buttons side="left">
+      <div class="headerlogo"> 
+<!--<img src="img/menu/navlogo.png" alt="logo" ui-sref="tab.dash">-->
+      </div>
     </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-      <button class="button button-icon button-clear" >
-        <img src="img/menu/search.png" alt="search">
-      </button>
-    </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+            <button class="button button-clear ion-navicon-round menuBtn" ng-click="popover.show($event)">
+        </button>
+            
+        </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content class="padding">
     <div class="shadow shadows">
       <div class="list card">
-      <div class="item test-image">
-        <p>ET01 | ENTREPRENEURSHIP QUOTIENT</p>
-        <img src="img/certificate/certi.jpg">
-      </div>
-<div class="info">
-  <div class="certificate-info">
-    <div class="row">
-      <div class="col">
-<span>Total Questions</span>
-      </div>
-      <div class="col">
-<span>50</span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-<span>Answered</span>
-      </div>
-      <div class="col">
-<span>45</span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-<span>Quotient</span>
-      </div>
-      <div class="col">
-<span>91%</span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-<span>Congratulations</span>
-      </div>
-      <div class="col">
-<span></span>
-      </div>
-    </div>
-  </div>
-    <div class="butn-pull bgs">
-      <button class="button button-stable " ui-sref="testreg">
+        <div class="item test-image">
+          <div class="username">
+            <!--<div class="userrelative">-->
+            <span>{{username1}}</span></br>
+
+            <span>{{username2}}</span>
+            <!--</div>-->
+          </div>
+          <!--<span style="
+    position: absolute !important;
+    left: 47% !important;
+    bottom: 67% !important;
+    transform: translate(-50%, -50%) !important;
+    overflow: initial !important;
+    font-size: x-large !important;
+">some text</span>
+          <span class="userlastname" style="
+    position: absolute !important;
+    left: 46% !important;
+    bottom: 58% !important;
+    transform: translate(-50%, -50%) !important;
+    overflow: initial !important;
+        margin-left: 56px;
+    font-size: x-large !important;
+">biggest </span>-->
+
+          
+          <img src="img/Certificate.jpg">
+        </div>
+<div class="bgforgradient"><p>ET01 | {{testname}}</p> </div>
+        <div class="info">
+          <div class="certificate-info">
+            <div class="row">
+              <div class="col">
+                <span>Total Questions</span>
+              </div>
+              <div class="col">
+                <span>{{totalquestions}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <span>Answered</span>
+              </div>
+              <div class="col">
+                <span>{{questionsolved}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <span>Quotient</span>
+              </div>
+              <div class="col">
+                <span>{{percentage | number : 2}}%</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <span>Congratulations</span>
+              </div>
+              <div class="col">
+                <span></span>
+              </div>
+            </div>
+          </div>
+          <div class="butn-pull bgs">
+            <button class="button button-stable " ui-sref="testreg">
   Publish On Social Media
       </button>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-    </div>
-    </div>
-
-  <!-- <div class="shadow">
+    <!-- <div class="shadow">
     <div class="list card">
     <div class="item test-image">
       <p>ET02 | Are You Job Ready?</p>
