@@ -75,64 +75,66 @@ it manually.</span></p>
 -->
 
 <ion-view hide-nav-bar="false" class="bg-green">
-  <ion-view  title="">
+  <ion-view title="">
     <ion-nav-bar class="bar-stable schedule-bar  nav-height">
-        <ion-nav-buttons side="left">
-           
-        </ion-nav-buttons>
-        <ion-nav-buttons side="right">
-            <button class="button button-clear ion-navicon-round menuBtn" ng-click="popover.show($event)">
-        </button>
-            
-        </ion-nav-buttons>
-    </ion-nav-bar>
-  <ion-content>
-    <div class="logo-img">
-      <img src="img/Logo_png.png" alt="Logo">
-    </div>
-    <div class="forms">
-      <form action="">
-        <h4 class="text-center">mobile number <br>verification</h4>
-        <div class="list login-form">
-          <div class="item item-input-inset">
-            <label class="item-input-wrapper">
-            <input type="number" placeholder="+91" style="font-weight: 900; color:white;" ng-model="contact" data-ng-pattern="/^(\+\d{1,3}[- ]?)?\d{10}$/" >
-          </label>
-          </div>
-        </div>
-        <div class="note">
-          <p> Note: <span>We will be sending One Time Password(OTP) to the  mobile number entered above.</span></p>
-        </div>
-        <div class="list login-form">
-          <div class="item item-input-inset">
-            <label class="item-input-wrapper">
-            <input type="number" placeholder="Enter OTP" style="font-weight: 900; color:white;" ng-model="otpcode">
-          </label>
-          </div>
-        </div>
-        <div class="note">
+      <ion-nav-buttons side="left">
 
-          <p> Note: <span>The OTP is being sent to your Mobile Number entered. The application will read the OTP from SMS on its own and populated above. In case it is not populated above then check
+      </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+        <button class="button button-clear ion-navicon-round menuBtn" ng-click="popover.show($event)">
+        </button>
+
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content>
+      <div class="logo-img">
+        <img src="img/Logo_png.png" alt="Logo">
+      </div>
+      <div class="forms">
+        <form action="">
+          <h4 class="text-center">mobile number <br>verification</h4>
+          <div class="list login-form">
+            <div class="item item-input-inset">
+              <label class="item-input-wrapper">
+              <label for="" class="phoneno">+91</label>
+
+              <input type="number" placeholder="Mobile Number" class="phoneno" ng-model="contact" data-ng-pattern="/^(\+\d{1,3}[- ]?)?\d{10}$/">
+              </label>
+            </div>
+          </div>
+          <div class="note">
+            <p> Note: <span>We will be sending One Time Password(OTP) to the  mobile number entered above.</span></p>
+          </div>
+          <div class="list login-form">
+            <div class="item item-input-inset">
+              <label class="item-input-wrapper">
+            <input type="number" placeholder="Enter OTP" class="otpin" ng-model="otpcode">
+          </label>
+            </div>
+          </div>
+          <div class="note">
+
+            <p> Note: <span>The OTP is being sent to your Mobile Number entered. The application will read the OTP from SMS on its own and populated above. In case it is not populated above then check
 your SMS box and retrieve the OTP from there and then enter
 it manually.</span></p>
-        </div>
-        <div class="butn-pull">
-          <button class="button " style="width: 39% !important;" ng-click="submitcontact(contact)">
+          </div>
+          <div class="butn-pull">
+            <button class="button otpbutton pull-left" ng-click="submitcontact(contact)">
               Resend OTP 
             </button>
-          <button class="button " style="width: 39% !important;" ng-click="verifyotp(otpcode)">
+            <button class="button otpbutton" ng-click="verifyotp(otpcode)">
               Verify  
             </button>
+          </div>
+
+        </form>
+
+        <div class="note notes" ng-bind-html="verifymsg">
+
         </div>
-
-      </form>
-
-      <div class="note notes" ng-bind-html="verifymsg">
-
       </div>
-    </div>
-  </ion-content>
+    </ion-content>
 
 
 
-</ion-view>
+  </ion-view>

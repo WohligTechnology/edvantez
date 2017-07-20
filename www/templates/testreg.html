@@ -1,18 +1,18 @@
 <ion-view view-title="" class="">
-   <div class="bar bar-header bar-light header-bottom ">
-<h1 class="title mar login-bar navcentericon"><img src="img/smallImg.png" alt="logo" ui-sref="tab.dash">
-</div>
- 
-    <ion-nav-buttons side="left">
-      <button class="button button-icon button-clear" ui-sref="tab.dash">
+  <div class="bar bar-header bar-light header-bottom ">
+    <h1 class="title mar login-bar navcentericon"><img src="img/smallImg.png" alt="logo" ui-sref="tab.dash">
+  </div>
+
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear" ui-sref="tab.dash">
       <i class="ion-ios-arrow-back"></i>
       </button>
-    </ion-nav-buttons>
-     <ion-nav-buttons side="right">
-            <button class="button button-clear ion-navicon-round menuBtn" ng-click="popover.show($event)">
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear ion-navicon-round menuBtn" ng-click="popover.show($event)">
         </button>
-            
-        </ion-nav-buttons>
+
+  </ion-nav-buttons>
   <ion-content>
     <div class="title-div text-center">
       <p>ET01 | {{test.name | uppercase}} </p>
@@ -26,10 +26,10 @@
         <div class="info">
           <div class="name">
             <div class="row" style="width:93px">
-              <div class="col">
+              <div class="col pad0">
                 <div class="abbr">
 
-                  <label class="item item-input item-select">
+                  <label class="item item-input item-select mrwidth">
                   
                     <select>
                       <option>Mrs</option>
@@ -53,22 +53,22 @@
             </div>
 
             <div class="row ">
-              <div class="col">
+              <div class="col pad0">
                 <div class="name-surname">
                   <label class="item-input-wrapper">
  <!--  <i class="mail" style="background-color:white"></i>-->
-       <input type="text" placeholder="First Name" ng-model="form.firstname">
+       <input type="text" placeholder="First Name" ng-model="form.firstname" class="inputform">
  </label>
                 </div>
               </div>
             </div>
 
             <div class="row ">
-              <div class="col">
+              <div class="col pad0">
                 <div class="name-surname">
                   <label class="item-input-wrapper">
  <!--  <i class="mail" style="background-color:white"></i>-->
-       <input type="text" placeholder="Last Name" ng-model="form.lastname">
+       <input type="text" placeholder="Last Name" ng-model="form.lastname" class="inputform">
  </label>
                 </div>
               </div>
@@ -76,11 +76,11 @@
 
 
             <div class="row ">
-              <div class="col">
+              <div class="col pad0">
                 <div class="name-surname">
                   <label class="item-input-wrapper">
  <!--  <i class="mail" style="background-color:white"></i>-->
-       <input type="email" placeholder="Email" ng-pattern = '/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i'  ng-model="form.email">
+       <input type="email" placeholder="Email" class="inputform" ng-pattern = '/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i'  ng-model="form.email">
  </label>
                 </div>
               </div>

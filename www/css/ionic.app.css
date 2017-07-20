@@ -10202,8 +10202,8 @@ li.active .round {
   margin: 0 10px; }
 
 .sliders {
-  width: 95%;
-  margin: 60px auto 0; }
+  width: 100%;
+  margin: 0px auto 0; }
   .sliders .ion-ios-arrow-back:before,
   .sliders .ion-ios-arrow-forward:before {
     color: #000;
@@ -10704,7 +10704,7 @@ position: relative;*/
 
 .question-list li {
   background-color: #e6e6e6;
-  padding: 5px 25px;
+  padding: 12px 25px;
   text-align: left;
   margin-top: 5px;
   border-top-left-radius: 5px;
@@ -10712,7 +10712,11 @@ position: relative;*/
   position: relative;
   font-size: 12px;
   font-weight: 900;
-  color: #8c8a84; }
+  color: #8c8a84;
+  width: 90%; }
+
+.qmar {
+  margin-left: 40px; }
 
 .question-list .active {
   background-color: #aac92f !important; }
@@ -10735,7 +10739,7 @@ li.active .round {
   color: #fff !important;
   position: absolute;
   top: 0;
-  left: -15px; }
+  left: -25px; }
 
 progress-one,
 .progress-two {
@@ -10902,7 +10906,7 @@ progress-one,
     right: 8% !important; }
 
 .shadows2 {
-  box-shadow: 0px -4px  #fb3833 !important; }
+  box-shadow: 0px -4px #fb3833 !important; }
 
 .inputHeight {
   height: 25px !important;
@@ -11131,3 +11135,35 @@ video {
 
 .marbot {
   margin-bottom: 10px; }
+
+.phoneno {
+  font-weight: 900;
+  color: white !important; }
+
+.buttonmob {
+  border-radius: 18px 0 !important;
+  width: 50% !important; }
+
+.inputform {
+  width: 100% !important;
+  font-weight: 900;
+  color: white !important; }
+
+.otpin {
+  width: 100%;
+  font-weight: 900;
+  color: white !important;
+  text-align: center; }
+
+.otpbutton {
+  width: 39% !important;
+  border-radius: 18px 0 !important; }
+
+.butdash {
+  border-radius: 18px 0 !important; }
+
+.mrwidth {
+  width: 80% !important; }
+
+.pad0 {
+  padding: 0; }
