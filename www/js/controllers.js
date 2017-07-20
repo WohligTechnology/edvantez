@@ -120,7 +120,7 @@ $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
             /************* function to close modal popup************* */
             $rootScope.closePopup = function () {
               $rootScope.modal.close();
-              $state.go("tab.chats")
+              $state.go("laststep")
             };
             /*closing modal end*/
             /************function to call after timeout**************/
@@ -141,15 +141,15 @@ $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
 
               })
               if (flag == 1) {
-                $rootScope.modal = $ionicPopup.show({
-                  templateUrl: 'templates/modals/time.html',
-                  scope: $rootScope,
-                  animation: 'fadeInUp',
+                // $rootScope.modal = $ionicPopup.show({
+                //   templateUrl: 'templates/modals/time.html',
+                //   scope: $rootScope,
+                //   animation: 'fadeInUp',
 
-                })
-                $rootScope.modal.then(function (modal) {
-                  $rootScope.modal = modal;
-                });
+                // })
+                // $rootScope.modal.then(function (modal) {
+                //   $rootScope.modal = modal;
+                // });
 
               } else {
                 $rootScope.modal = $ionicPopup.show({
@@ -376,6 +376,38 @@ $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
   })
   .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
     $scope.chat = Chats.get($stateParams.chatId);
+
+  })
+
+  .controller('LastStepCtrl', function ($scope, $stateParams, Chats, $ionicPopover) {
+    
+$ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
+            scope: $scope,
+            cssClass: 'menupop',
+
+        }).then(function(popover) {
+            $scope.popover = popover;
+        });
+
+        $scope.closePopover = function() {
+            $scope.popover.hide();
+        };
+
+  })
+
+  .controller('ProfileCtrl', function ($scope, $stateParams, Chats, $ionicPopover) {
+    $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
+            scope: $scope,
+            cssClass: 'menupop',
+
+        }).then(function(popover) {
+            $scope.popover = popover;
+        });
+
+        $scope.closePopover = function() {
+            $scope.popover.hide();
+        };
+
 
   })
 

@@ -106,6 +106,28 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
       })
 
+     
+     .state('laststep', {
+        url: '/laststep',
+        cache: false,
+        templateUrl: 'templates/laststep.html',
+        controller: 'LastStepCtrl'
+
+      })
+
+    .state('tab.profile', {
+        url: '/profile',
+        cache: false,
+        views: {
+          'tab-profile': {
+            templateUrl: 'templates/tab-profile.html',
+            controller: 'ProfileCtrl'
+          }
+        }
+      })
+
+
+
       .state('testreg', {
         cache: false,
 

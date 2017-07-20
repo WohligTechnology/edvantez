@@ -1,17 +1,18 @@
-<ion-view view-title="" class="logo-center yes-title">
-  <ion-nav-bar class="bar-positive bar-color ">
+<ion-view view-title="" class="">
+   <div class="bar bar-header bar-light header-bottom ">
+<h1 class="title mar login-bar navcentericon"><img src="img/smallImg.png" alt="logo" ui-sref="tab.dash">
+</div>
+ 
     <ion-nav-buttons side="left">
       <button class="button button-icon button-clear" ui-sref="tab.dash">
       <i class="ion-ios-arrow-back"></i>
       </button>
     </ion-nav-buttons>
-    <!-- <ion-nav-div >
-      <div class="button button-icon button-clear" >
-      <img src="img/menu/edu.png" alt="logo">
-    </div>
-
-  </ion-nav-div> -->
-  </ion-nav-bar>
+     <ion-nav-buttons side="right">
+            <button class="button button-clear ion-navicon-round menuBtn" ng-click="popover.show($event)">
+        </button>
+            
+        </ion-nav-buttons>
   <ion-content>
     <div class="title-div text-center">
       <p>ET01 | {{test.name | uppercase}} </p>
@@ -84,7 +85,7 @@
                 </div>
               </div>
             </div>
-            <div class="butn-pull bgs">
+            <div class="butn-pull bgs1">
               <button class="button button-stable" id="regbutton" ng-click="submit(form)">
 Take Test
   </button>

@@ -1,24 +1,39 @@
 <ion-view view-title="Profile" class="otps">
+   <ion-nav-bar class="bar-positive bar-color ">
+    <!--<ion-nav-back-button>
+    </ion-nav-back-button>-->
+    <ion-nav-buttons side="left">
+      <div class="headerlogo"> 
+<img src="img/menu/navlogo.png" alt="logo" ui-sref="tab.dash">
+      </div>
+    
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+            <button class="button button-clear ion-navicon-round menuBtn" ng-click="popover.show($event)">
+        </button>
+            
+        </ion-nav-buttons>
+  </ion-nav-bar>
   <ion-content class="padding">
-    <div class="">
-      <div class="card">
+    <div class="shadow2 shadows2">
+      <div class="list card">
         <div class="row">
           <div class="col-20">
-            <div class="proImg">
-              <i class="ion ion-person"></i>
+            <div class="profImg">
+             <img src="img/profile.png" alt="">
             </div>
-            <label for="">edit</label>
+            <h4 class="editpro" for="">edit</h4>
 
           </div>
           <div class="col-80">
             <div class="">
               <label class="">
-                <span class="">First Name</span>
-                <input class="pro-inbr" type="text" placeholder="First Name">
+                <h4 class="nameText">First Name</h4>
+                <input class="pro-inbr inputHeight" type="text" placeholder="First Name" disabled>
             </label>
               <label class="">
-                <span class="">Last Name</span>
-                <input class="pro-inbr" type="text" placeholder="Last Name">
+                <h4 class="nameText">Last Name</h4>
+                <input class="pro-inbr inputHeight" type="text" placeholder="Last Name" disabled>
             </label>
               <!--<label class="item item-input item-stacked-label">
                 <span class="input-label">Email</span>
@@ -28,63 +43,79 @@
           </div>
         </div>
         <div>
-          <label for="">PERSONAL INFORMATION</label>
+          <h4 class= "perinfo" for="">PERSONAL INFORMATION</h4>
         </div>
         <div class="">
           <div class="row">
             <div class="col-10 icondiv">
-              <i class="ion ion-person"></i>
+              <img src="img/user.png" alt="">
+            </div>
+            <div class="col-90 relative">
+              <label class="">
+                <h4 class="nameText">Display Name</h4>
+                <input class="pro-inbr inputHeight" type="text" placeholder="Display Name" disabled>
+            </label>
+            <div class="absoluteImg">
+              <img src="img/info.png" alt="">
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-10 icondiv">
+              <img src="img/mail.png" alt="">
+            </div>
+            <div class="col-90 relative">
+              <label class="">
+                <h4 class="nameText ">Email</h4>
+                <input class="pro-inbr inputHeight" type="email" placeholder="Email" disabled>
+            </label>
+            <p class="verified">Verified</p>
+            <div class="veriImg">
+              <img src="img/verify.png" alt="">
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-10 icondiv1">
+              <img src="img/phone.png" alt="">
+            </div>
+            <div class="col-90 relative">
+              <label class="">
+                <h4 class="nameText">Mobile no.</h4>
+                <input class="pro-inbr inputHeight" type="email" placeholder="Mobile no." disabled>
+            </label>
+             <p class="verified">Verified</p>
+              <div class="veriImg">
+              <img src="img/verify.png" alt="">
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-10 icondiv">
+              <img src="img/birthday.png" alt="">
             </div>
             <div class="col-90">
               <label class="">
-                <span class="">Display Name</span>
-                <input class="pro-inbr" type="text" placeholder="Display Name">
+                <h4 class="nameText">Date of Birth.</h4>
+                <input class="inputHeight" type="date" placeholder="DOB" disabled>
             </label>
             </div>
           </div>
           <div class="row">
             <div class="col-10 icondiv">
-              <i class="ion ion-person"></i>
+              <img src="img/gender.png" alt="">
             </div>
             <div class="col-90">
               <label class="">
-                <span class="">Email</span>
-                <input class="pro-inbr" type="email" placeholder="Email">
-            </label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-10 icondiv">
-              <i class="ion ion-person"></i>
-            </div>
-            <div class="col-90">
-              <label class="">
-                <span class="">Mobile no.</span>
-                <input class="pro-inbr" type="email" placeholder="Mobile no.">
-            </label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-10 icondiv">
-              <i class="ion ion-person"></i>
-            </div>
-            <div class="col-90">
-              <label class="">
-                <span class="">Date of Birth.</span>
-                <input class="" type="date" placeholder="Mobile no.">
-            </label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-10 icondiv">
-              <i class="ion ion-person"></i>
-            </div>
-            <div class="col-90">
-              <label class="">
-                <span class="">Gender</span>
+                <h4 class="nameText">Gender</h4>
                 <div>
-                <input type="radio">Male
-                <input type="radio">Female
+                  <span>
+<input  type="radio" name="gender" id="male" value="male" checked disabled><label for="male" >Male </label>
+                  </span>
+                <span>
+<input  type="radio" name="gender" id="female" value="female" disabled><label for="female" >Female </label>
+                </span>
+                
                 </div>
                
 

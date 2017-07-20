@@ -112,7 +112,7 @@
 </div>-->
     <div class="questionare">
       <ul ng-repeat="questions in chquestions" ng-init="ind1 = $index">
-        <li ng-repeat="question in questions" ng-init="ind2 = $index;series=(ind1*10+ind2+1) " ng-class="checkSolvedQuestions(question)"
+        <li ng-repeat="question in questions" ng-init="ind2 = $index;series=(ind1*10+ind2+1)" ng-class="checkSolvedQuestions(question)"
           ui-sref="test ({id: series,allquest: question})">{{series}}</li>
         <!--<li>2</li>
     <li>3</li>
