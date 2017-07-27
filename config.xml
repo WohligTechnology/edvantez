@@ -1,6 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.wohlig.edvantez" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<<<<<<< HEAD
     <name>edvantez</name>
+=======
+    <name>X-Quotient</name>
+>>>>>>> b849b2be990fd142b19252393eb388c2101dc281
     <description>e-Learning</description>
     <author email="tushar@wohlig.com" href="http://wohlig.com/">Tushar Sachde</author>
     <content src="index.html" />

@@ -1,7 +1,7 @@
 {
-  "name": "edvantez",
+  "name": "X Quotient",
   "version": "1.1.1",
-  "description": "edvantez: An Ionic project",
+  "description": "X-Quotient: An Ionic project",
   "dependencies": {
     "cordova-android": "^6.2.3",
     "cordova-plugin-console": "^1.0.7",
