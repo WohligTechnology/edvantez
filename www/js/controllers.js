@@ -1,17 +1,17 @@
 angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
 
   .controller('DashCtrl', function ($scope, $state, $ionicPlatform, Chats, $templateCache, $ionicHistory, $ionicPopover) {
-$ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
-            scope: $scope,
-            cssClass: 'menupop',
+    $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
+      scope: $scope,
+      cssClass: 'menupop',
 
-        }).then(function(popover) {
-            $scope.popover = popover;
-        });
+    }).then(function (popover) {
+      $scope.popover = popover;
+    });
 
-        $scope.closePopover = function() {
-            $scope.popover.hide();
-        };
+    $scope.closePopover = function () {
+      $scope.popover.hide();
+    };
     $ionicPlatform.registerBackButtonAction(function (e) {
       if ($state.current.name == 'tab.dash') {
         ionic.Platform.exitApp();
@@ -28,17 +28,17 @@ $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
 
 
   .controller('MobileCtrl', function ($scope, $state, $ionicPopover) {
-$ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
-            scope: $scope,
-            cssClass: 'menupop',
+    $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
+      scope: $scope,
+      cssClass: 'menupop',
 
-        }).then(function(popover) {
-            $scope.popover = popover;
-        });
+    }).then(function (popover) {
+      $scope.popover = popover;
+    });
 
-        $scope.closePopover = function() {
-            $scope.popover.hide();
-        };
+    $scope.closePopover = function () {
+      $scope.popover.hide();
+    };
 
     $scope.submitcontact = function (contact) {
 
@@ -176,16 +176,16 @@ $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
 
   .controller('OtpCtrl', function ($scope, $location, $ionicPopover) {
     $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
-            scope: $scope,
-            cssClass: 'menupop',
+      scope: $scope,
+      cssClass: 'menupop',
 
-        }).then(function(popover) {
-            $scope.popover = popover;
-        });
+    }).then(function (popover) {
+      $scope.popover = popover;
+    });
 
-        $scope.closePopover = function() {
-            $scope.popover.hide();
-        };
+    $scope.closePopover = function () {
+      $scope.popover.hide();
+    };
 
     $scope.contact = $.jStorage.get("contact")
     var verify = false;
@@ -332,16 +332,16 @@ $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
 
   .controller('ChatsCtrl', function ($scope, $ionicPlatform, $state, Chats, $timeout, $templateCache, $ionicHistory, $ionicPopover) {
     $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
-            scope: $scope,
-            cssClass: 'menupop',
+      scope: $scope,
+      cssClass: 'menupop',
 
-        }).then(function(popover) {
-            $scope.popover = popover;
-        });
+    }).then(function (popover) {
+      $scope.popover = popover;
+    });
 
-        $scope.closePopover = function() {
-            $scope.popover.hide();
-        };
+    $scope.closePopover = function () {
+      $scope.popover.hide();
+    };
     $scope.resultid = $.jStorage.get("resultid");
     /*$scope.username1 = "Bhargav";
     $scope.username2 = "Purohit"*/
@@ -379,34 +379,43 @@ $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
 
   })
 
-  .controller('LastStepCtrl', function ($scope, $stateParams, Chats, $ionicPopover) {
-    
-$ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
-            scope: $scope,
-            cssClass: 'menupop',
+  .controller('LastStepCtrl', function ($scope, $stateParams, Chats, $ionicPopover, $state) {
 
-        }).then(function(popover) {
-            $scope.popover = popover;
-        });
+    $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
+      scope: $scope,
+      cssClass: 'menupop',
 
-        $scope.closePopover = function() {
-            $scope.popover.hide();
-        };
+    }).then(function (popover) {
+      $scope.popover = popover;
+    });
+
+    $scope.closePopover = function () {
+      $scope.popover.hide();
+    };
+    $scope.submitCollege = function (form) {
+      console.log(form, $.jStorage.get("userid"))
+      form._id = $.jStorage.get("userid");
+
+      Chats.collegeInfo(form, function (data) {
+        console.log(data)
+        $state.go("tab.chats");
+      })
+    }
 
   })
 
   .controller('ProfileCtrl', function ($scope, $stateParams, Chats, $ionicPopover) {
     $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
-            scope: $scope,
-            cssClass: 'menupop',
+      scope: $scope,
+      cssClass: 'menupop',
 
-        }).then(function(popover) {
-            $scope.popover = popover;
-        });
+    }).then(function (popover) {
+      $scope.popover = popover;
+    });
 
-        $scope.closePopover = function() {
-            $scope.popover.hide();
-        };
+    $scope.closePopover = function () {
+      $scope.popover.hide();
+    };
 
 
   })

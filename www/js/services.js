@@ -1,4 +1,5 @@
 var adminurl = "http://eq.wohlig.co.in/api/"
+//var adminurl = "http://wohlig.io:1337/api/"
 angular.module('starter.services', [])
 
   .factory('Chats', function ($http, $location) {
@@ -39,6 +40,15 @@ angular.module('starter.services', [])
       },
 
       userReg: function (form, callback) {
+        $http({
+          url: adminurl + 'User/save',
+          method: 'POST',
+          //withCredentials: false,
+          data: form,
+        }).success(callback);
+      },
+
+      collegeInfo: function (form, callback) {
         $http({
           url: adminurl + 'User/save',
           method: 'POST',

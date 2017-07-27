@@ -43,9 +43,7 @@
     "cordova-plugin-whitelist@1.3.2",
     "ionic-plugin-keyboard@2.2.1"
   ],
-  "cordovaPlatforms": [
-    "android"
-  ],
+  "cordovaPlatforms": [],
   "cordova": {
     "plugins": {
       "cordova-plugin-console": {},
