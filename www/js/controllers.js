@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
+angular.module('starter.controllers', ['angular-svg-round-progressbar', 'ngCordova'])
 
   .controller('DashCtrl', function ($scope, $state, $ionicPlatform, Chats, $templateCache, $ionicHistory, $ionicPopover) {
     $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
@@ -27,7 +27,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
   })
 
 
-  .controller('MobileCtrl', function ($scope, $state, $ionicPopover) {
+  .controller('MobileCtrl', function ($scope, $state, $ionicPopover, Chats) {
     $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
       scope: $scope,
       cssClass: 'menupop',
@@ -47,6 +47,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
       } else {
         $.jStorage.set("contact", contact);
         $state.go("otp");
+
       }
     }
 
@@ -55,6 +56,13 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
   .controller('RegisteringCtrl', function ($scope, $window, $ionicPlatform, $rootScope, $state, $location, $ionicPopup, Chats, $stateParams, $timeout, $ionicModal) {
     var flag = 0;
     $scope.id = $stateParams.id
+    $scope.form = {};
+    if ($.jStorage.get("profile")) {
+      $scope.form._id = $.jStorage.get("profile")._id
+      $scope.form.firstname = $.jStorage.get("profile").firstname;
+      $scope.form.lastname = $.jStorage.get("profile").lastname;
+      $scope.form.email = $.jStorage.get("profile").email;
+    }
     Chats.singleTest($scope.id, function (data) {
       $scope.test = data.data;
 
@@ -63,10 +71,17 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
       $.jStorage.set("testdetails", $scope.test);
       $scope.numofquestions = $scope.test.questionSet.length;
     })
-    $scope.submit = function (form) { //on form submition
+    /*on form submition*/
+    $scope.submit = function (form) {
 
       if (form.email != null && form.firstname != null && form.lastname) {
         angular.element(document.getElementById('regbutton'))[0].disabled = true;
+        if ($scope.form._id) {
+          form._id = $scope.form._id;
+          form.mobile = $.jStorage.get("profile").mobile;
+        } else {
+          form.mobile = $.jStorage.get("contact");
+        }
         Chats.userReg(form, function (data) { //checking or validation
           $scope.errormsg = null;
           if (data.error) { //if there are errors
@@ -74,7 +89,9 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
             $scope.errormsg = "please fill the details correctly"
           } else { //if no errors
             var userid = data.data._id;
-            $.jStorage.set("userid", userid);
+            Chats.searchPhone($scope.form.mobile, function (data) {
+              $.jStorage.set("profile", data.data);
+            })
             $.jStorage.set("login", true);
             $.jStorage.set("testid", $scope.id);
             $rootScope.resultarr = Array();
@@ -129,7 +146,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
               $rootScope.minutes = 0;
               $rootScope.seconds = 0;
               $timeout.cancel(mytimeout)
-              var user = $.jStorage.get("userid");
+              var user = $.jStorage.get("profile")._id;
               var obj = {
                 user: user,
                 testName: $scope.test._id,
@@ -174,7 +191,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
     }
   })
 
-  .controller('OtpCtrl', function ($scope, $location, $ionicPopover) {
+  .controller('OtpCtrl', function ($scope, $location, $ionicPopover, Chats) {
     $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
       scope: $scope,
       cssClass: 'menupop',
@@ -193,7 +210,19 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
       if (verify == false) {
         $scope.verifymsg = "please verify your number"
       } else {
-        $location.path("tab/dash");
+        Chats.searchPhone($scope.contact, function (data) {
+          console.log(data.error);
+          if (data.error == "No Data Found") {
+            $.jStorage.set("profile", "");
+            $location.path("tab/profile");
+          } else {
+            //callthe profile and store it in jstorage
+            console.log(data);
+            $.jStorage.set("profile", data.data);
+            $location.path("tab/dash");
+          }
+        })
+
       }
     }
     $scope.verifyotp = function (otpcode) {
@@ -275,7 +304,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
           $rootScope.resultarr.push({
             question: qust,
             marks: marks,
-            option: opt,
+            selectedAnswer: opt,
             selected: selected
           })
         } else {
@@ -285,7 +314,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
           $rootScope.resultarr.push({
             question: qust,
             marks: marks,
-            option: opt,
+            selectedAnswer: opt,
             selected: selected
           });
         }
@@ -348,6 +377,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
     Chats.findResult($scope.resultid, function (data) {
       $scope.resultdetails = data.data;
       $scope.testid = data.data.testName;
+
       if ($scope.testid != null) {
         Chats.getUser($scope.resultdetails.user, function (data) {
           $scope.username1 = data.data.firstname;
@@ -371,7 +401,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
           $scope.percentage = (total * 100) / totalmarks;
         })
       }
-      $.jStorage.flush();
+      // $.jStorage.flush();
     })
   })
   .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
@@ -379,8 +409,8 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
 
   })
 
-  .controller('LastStepCtrl', function ($scope, $stateParams, Chats, $ionicPopover, $state) {
-
+  .controller('LastStepCtrl', function ($scope, $stateParams, Chats, $ionicPopover, $state, $filter) {
+    $scope.formData = {};
     $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
       scope: $scope,
       cssClass: 'menupop',
@@ -392,19 +422,31 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
     $scope.closePopover = function () {
       $scope.popover.hide();
     };
+    if ($.jStorage.get("profile").college) {
+      $scope.formData.college = $.jStorage.get("profile").college;
+      $scope.formData.course = $.jStorage.get("profile").course;
+      $scope.formData.complitionYear = parseInt($.jStorage.get("profile").complitionYear);
+    }
     $scope.submitCollege = function (form) {
       console.log(form, $.jStorage.get("userid"))
-      form._id = $.jStorage.get("userid");
+      form._id = $.jStorage.get("profile")._id;
 
       Chats.collegeInfo(form, function (data) {
         console.log(data)
-        $state.go("tab.chats");
+        $scope.formData.mobile = $.jStorage.get("profile").mobile;
+        Chats.searchPhone($scope.formData.mobile, function (data) {
+          $.jStorage.set("profile", data.data);
+          $state.go("tab.chats");
+        })
+
       })
     }
 
   })
 
-  .controller('ProfileCtrl', function ($scope, $stateParams, Chats, $ionicPopover) {
+  .controller('ProfileCtrl', function ($scope, $stateParams, $ionicPopover, $state, $filter, Chats) {
+    $scope.formData = {};
+    $scope.formData.mobile = $.jStorage.get("contact");
     $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
       scope: $scope,
       cssClass: 'menupop',
@@ -416,7 +458,51 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
     $scope.closePopover = function () {
       $scope.popover.hide();
     };
+    if ($.jStorage.get("profile")) {
+      $scope.formData._id = $.jStorage.get("profile");
 
+      $scope.formData.firstname = $.jStorage.get("profile").firstname;
+      $scope.formData.lastname = $.jStorage.get("profile").lastname;
+      $scope.formData.fullName = $scope.formData.firstname + " " + $scope.formData.lastname
+      $scope.formData.email = $.jStorage.get("profile").email;
+      $scope.formData.dob = new Date($filter('date')($.jStorage.get("profile").dob, 'dd/MM/yyyy'));
+      $scope.formData.gender = $.jStorage.get("profile").gender;
+    }
+
+    $scope.profile = function (formData) {
+      console.log("formData", $scope.formData)
+      $scope.formData.fullName = $scope.formData.firstname + " " + $scope.formData.lastname
+
+      Chats.userReg($scope.formData, function (data) {
+        console.log("dataafterreg", data);
+        Chats.searchPhone($scope.formData.mobile, function (data) {
+          $.jStorage.set("profile", data.data);
+          $state.go("tab/dash");
+        })
+
+      })
+    }
+    $scope.getImageSaveContact = function () {
+      // Image picker will load images according to these settings
+      Chats.showActionsheet(1, function (data) {
+        console.log("imgpicerdata", data)
+      })
+      //   var options = {
+      //     maximumImagesCount: 1, // Max number of selected images, I'm using only one for this example
+      //     width: 800,
+      //     height: 800,
+      //     quality: 80 // Higher is better
+      //   };
+
+      //   $cordovaImagePicker.getPicture(options).then(function (results) {
+      //     // Loop through acquired images
+      //     for (var i = 0; i < results.length; i++) {
+      //       console.log('Image URI: ' + results[i]); // Print image URI
+      //     }
+      //   }, function (error) {
+      //     console.log('Error: ' + JSON.stringify(error)); // In case of error
+      //   });
+    };
 
   })
 
@@ -426,8 +512,14 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', ])
     };
   })
 
-  .controller('AccountCtrl', function ($scope) {
+  .controller('AccountCtrl', function ($scope, Chats) {
     $scope.settings = {
       enableFriends: true
     };
+    if ($.jStorage.get("profile")) {
+      Chats.getNotification($.jStorage.get("profile")._id, function (data) {
+        console.log("notifications", data);
+        $scope.notifications = data.data.notification;
+      })
+    }
   });
