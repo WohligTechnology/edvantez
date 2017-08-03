@@ -21,8 +21,10 @@
           <div class="row">
             <div class="col-20">
               <div class="profImg">
-                <img src="img/profile.png" alt="" ng-if="profilepic==''">
-                <img ng-src="{{profilepic}}" alt="">
+                <div class="img-responsive">
+                  <img src="img/profile.png" alt="" ng-if="profilepic==''">
+                  <img ng-src="{{profilepic}}" alt="">
+                </div>
               </div>
               <h4 class="editpro" for="" ng-click="getImageSaveContact()">edit</h4>
 

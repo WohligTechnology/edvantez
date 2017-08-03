@@ -10918,7 +10918,9 @@ progress-one,
   margin: 10px auto;
   width: 80%; }
   .profImg img {
-    width: 100%; }
+    width: 100%;
+    border-radius: 50%;
+    height: 58px; }
 
 .editpro {
   text-align: -webkit-center;
