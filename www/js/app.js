@@ -36,7 +36,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         url: '/tab',
         abstract: true,
         cache: false,
-        templateUrl: 'templates/tabs.html'
+        templateUrl: 'templates/tabs.html',
+        controller: 'TabsCtrl'
       })
 
       // Each tab has its own nav history stack:
@@ -106,8 +107,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
       })
 
-     
-     .state('laststep', {
+
+      .state('laststep', {
         url: '/laststep',
         cache: false,
         templateUrl: 'templates/laststep.html',
@@ -115,7 +116,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
       })
 
-    .state('tab.profile', {
+      .state('tab.profile', {
         url: '/profile',
         cache: false,
         views: {
@@ -193,14 +194,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     $urlRouterProvider.otherwise('/mobile');
 
   })
-.directive("limitTo", [function() {
+  .directive("limitTo", [function () {
     return {
-        restrict: "A",
-        link: function(scope, elem, attrs) {
-            var limit = parseInt(attrs.limitTo);
-            angular.element(elem).on("keypress", function(e) {
-                if (this.value.length == limit) e.preventDefault();
-            });
-        }
+      restrict: "A",
+      link: function (scope, elem, attrs) {
+        var limit = parseInt(attrs.limitTo);
+        angular.element(elem).on("keypress", function (e) {
+          if (this.value.length == limit) e.preventDefault();
+        });
+      }
     }
-}]);
+  }]);

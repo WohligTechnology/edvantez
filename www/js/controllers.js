@@ -27,7 +27,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', 'ngCordo
   })
 
 
-  .controller('MobileCtrl', function ($scope, $state, $ionicPopover, Chats) {
+  .controller('MobileCtrl', function ($scope, $state, $ionicPopover, $location, Chats) {
     $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
       scope: $scope,
       cssClass: 'menupop',
@@ -35,6 +35,9 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', 'ngCordo
     }).then(function (popover) {
       $scope.popover = popover;
     });
+    if ($.jStorage.get("profile")) {
+      $location.path("tab/dash");
+    }
 
     $scope.closePopover = function () {
       $scope.popover.hide();
@@ -214,6 +217,12 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', 'ngCordo
           console.log(data.error);
           if (data.error == "No Data Found") {
             $.jStorage.set("profile", "");
+            var form = {};
+            form.mobile = $scope.contact;
+            Chats.userReg(form, function (data) {
+              $.jStorage.set("profile", data.data)
+              console.log(data)
+            })
             $location.path("tab/profile");
           } else {
             //callthe profile and store it in jstorage
@@ -444,7 +453,7 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', 'ngCordo
 
   })
 
-  .controller('ProfileCtrl', function ($scope, $stateParams, $ionicPopover, $state, $filter, Chats) {
+  .controller('ProfileCtrl', function ($scope, $stateParams, $ionicPopover, $cordovaImagePicker, $state, $filter, Chats) {
     $scope.formData = {};
     $scope.formData.mobile = $.jStorage.get("contact");
     $ionicPopover.fromTemplateUrl('templates/modals/menupopover.html', {
@@ -463,30 +472,53 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', 'ngCordo
 
       $scope.formData.firstname = $.jStorage.get("profile").firstname;
       $scope.formData.lastname = $.jStorage.get("profile").lastname;
-      $scope.formData.fullName = $scope.formData.firstname + " " + $scope.formData.lastname
+      if ($scope.formData.firstname == undefined || $scope.formData.lastname == undefined) {
+        $scope.formData.fullName = "";
+      } else {
+        $scope.formData.fullName = $scope.formData.firstname + " " + $scope.formData.lastname
+      }
+
       $scope.formData.email = $.jStorage.get("profile").email;
       $scope.formData.dob = new Date($filter('date')($.jStorage.get("profile").dob, 'dd/MM/yyyy'));
       $scope.formData.gender = $.jStorage.get("profile").gender;
+      if ($.jStorage.get("profile").photo != "") {
+        Chats.profilePic($.jStorage.get("profile").photo, function (data) {
+          $scope.profilepic = data;
+        });
+      }
     }
 
-    $scope.profile = function (formData) {
+    $scope.profileSubmit = function (formData) {
       console.log("formData", $scope.formData)
       $scope.formData.fullName = $scope.formData.firstname + " " + $scope.formData.lastname
-
       Chats.userReg($scope.formData, function (data) {
         console.log("dataafterreg", data);
         Chats.searchPhone($scope.formData.mobile, function (data) {
           $.jStorage.set("profile", data.data);
-          $state.go("tab/dash");
+          $state.go("tab.dash");
         })
 
       })
     }
     $scope.getImageSaveContact = function () {
       // Image picker will load images according to these settings
-      Chats.showActionsheet(1, function (data) {
-        console.log("imgpicerdata", data)
+      Chats.showActionsheet(function (data) {
+        console.log("****************************inside action sheet")
+        console.log(data);
+        var form = {};
+        form.photo = data[0];
+        form._id = $.jStorage.get("profile")._id;
+        Chats.userReg(form, function (data) {
+          Chats.searchPhone($.jStorage.get("profile").mobile, function (data) {
+            $.jStorage.set("profile", data.data);
+            Chats.profilePic($.jStorage.get("profile").photo, function (data) {
+              $scope.profilepic = data;
+            });
+            console.log(data);
+          })
+        })
       })
+
       //   var options = {
       //     maximumImagesCount: 1, // Max number of selected images, I'm using only one for this example
       //     width: 800,
@@ -494,11 +526,12 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', 'ngCordo
       //     quality: 80 // Higher is better
       //   };
 
-      //   $cordovaImagePicker.getPicture(options).then(function (results) {
+      //   $cordovaImagePicker.getPictures(options).then(function (results) {
       //     // Loop through acquired images
       //     for (var i = 0; i < results.length; i++) {
       //       console.log('Image URI: ' + results[i]); // Print image URI
       //     }
+      //     $scope.image = results[0];
       //   }, function (error) {
       //     console.log('Error: ' + JSON.stringify(error)); // In case of error
       //   });
@@ -510,6 +543,13 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', 'ngCordo
     $scope.settings = {
       enableFriends: true
     };
+  })
+
+  .controller('TabsCtrl', function ($scope, Chats, $state) {
+    $scope.logout = function () {
+      $.jStorage.flush();
+      $state.go("mobile");
+    }
   })
 
   .controller('AccountCtrl', function ($scope, Chats) {

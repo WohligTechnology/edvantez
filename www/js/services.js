@@ -1,8 +1,9 @@
 //var adminurl = "http://eq.wohlig.co.in/api/"
-var adminurl = "http://wohlig.io/api/"
+//var adminurl = "http://wohlig.io/api/"
+var adminurl = "http://192.168.1.118/api/"
 angular.module('starter.services', [])
 
-  .factory('Chats', function ($http, $location, $ionicActionSheet, $cordovaCamera, $cordovaFileTransfer, $cordovaImagePicker) {
+  .factory('Chats', function ($http, $location, $ionicActionSheet, $cordovaCamera, $ionicLoading, $cordovaFileTransfer, $cordovaImagePicker) {
     // Might use a resource here that returns a JSON array
 
     return {
@@ -157,13 +158,20 @@ angular.module('starter.services', [])
           data: data,
         }).success(callback);
       },
+
+      profilePic: function (data, path) {
+        img = adminurl + "upload/readFile?file=" + data;
+        path(img);
+      },
+
       //imageupload
 
 
 
 
-      showActionsheet: function (maxImage, callback) {
+      showActionsheet: function (callback) {
         var actionsheet = [];
+        var maxImage = 1;
         $ionicActionSheet.show({
           //  titleText: 'choose option',
           buttons: [{
@@ -204,7 +212,7 @@ angular.module('starter.services', [])
                             duration: 3000
                           }).then(function () {});
                           _.forEach(results, function (value) {
-
+                            console.log("value", value);
                             $cordovaFileTransfer.upload(adminurl + 'upload', value)
                               .then(function (result) {
                                 $ionicLoading.hide().then(function () {
@@ -215,11 +223,14 @@ angular.module('starter.services', [])
                                 actionsheet.push(result.response.data[0]);
                                 i++;
                                 if (results.length == i) {
+                                  console.log("url", actionsheet)
                                   callback(actionsheet);
                                 }
                               }, function (err) {
                                 // Error
+                                console.log("error", err);
                               }, function (progress) {
+                                console.log("progress", progress);
                                 // constant progress updates
                               });
                           });
@@ -241,6 +252,7 @@ angular.module('starter.services', [])
                         duration: 3000
                       }).then(function () {});
                       _.forEach(results, function (value) {
+                        console.log("value", value);
 
                         $cordovaFileTransfer.upload(adminurl + 'upload', value)
                           .then(function (result) {
@@ -249,11 +261,14 @@ angular.module('starter.services', [])
                             actionsheet.push(result.response.data[0]);
                             i++;
                             if (results.length == i) {
+                              console.log("imagepicer", actionsheet)
                               callback(actionsheet);
                             }
                           }, function (err) {
                             // Error
+                            console.log("error", err);
                           }, function (progress) {
+                            console.log("progress", progress);
                             // constant progress updates
                           });
                       });
