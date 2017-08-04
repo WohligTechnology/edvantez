@@ -161,15 +161,15 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', 'ngCordo
 
               })
               if (flag == 1) {
-                // $rootScope.modal = $ionicPopup.show({
-                //   templateUrl: 'templates/modals/time.html',
-                //   scope: $rootScope,
-                //   animation: 'fadeInUp',
+                $rootScope.modal = $ionicPopup.show({
+                  templateUrl: 'templates/modals/time.html',
+                  scope: $rootScope,
+                  animation: 'fadeInUp',
 
-                // })
-                // $rootScope.modal.then(function (modal) {
-                //   $rootScope.modal = modal;
-                // });
+                })
+                $rootScope.modal.then(function (modal) {
+                  $rootScope.modal = modal;
+                });
 
               } else {
                 $rootScope.modal = $ionicPopup.show({
@@ -518,23 +518,6 @@ angular.module('starter.controllers', ['angular-svg-round-progressbar', 'ngCordo
           })
         })
       })
-
-      //   var options = {
-      //     maximumImagesCount: 1, // Max number of selected images, I'm using only one for this example
-      //     width: 800,
-      //     height: 800,
-      //     quality: 80 // Higher is better
-      //   };
-
-      //   $cordovaImagePicker.getPictures(options).then(function (results) {
-      //     // Loop through acquired images
-      //     for (var i = 0; i < results.length; i++) {
-      //       console.log('Image URI: ' + results[i]); // Print image URI
-      //     }
-      //     $scope.image = results[0];
-      //   }, function (error) {
-      //     console.log('Error: ' + JSON.stringify(error)); // In case of error
-      //   });
     };
 
   })
