@@ -1,7 +1,9 @@
-var adminurl = "http://eq.wohlig.co.in/api/"
+//var adminurl = "http://eq.wohlig.co.in/api/"
+//var adminurl = "http://wohlig.io/api/"
+var adminurl = "http://192.168.1.118/api/"
 angular.module('starter.services', [])
 
-  .factory('Chats', function ($http, $location) {
+  .factory('Chats', function ($http, $location, $ionicActionSheet, $cordovaCamera, $ionicLoading, $cordovaFileTransfer, $cordovaImagePicker) {
     // Might use a resource here that returns a JSON array
 
     return {
@@ -47,6 +49,15 @@ angular.module('starter.services', [])
         }).success(callback);
       },
 
+      collegeInfo: function (form, callback) {
+        $http({
+          url: adminurl + 'User/save',
+          method: 'POST',
+          //withCredentials: false,
+          data: form,
+        }).success(callback);
+      },
+
       questiondetails: function () {
         var td = $.jStorage.get("testdetails");
         var resultset = $.jStorage.get("resultset")
@@ -74,7 +85,7 @@ angular.module('starter.services', [])
       },
 
       sessionend: function () {
-        $.jStorage.flush();
+        //$.jStorage.flush();
 
         $.jStorage.set("login", false);
         $location.path('/tab/dash');
@@ -102,7 +113,28 @@ angular.module('starter.services', [])
           data: data,
         }).success(callback);
       },
-
+      searchPhone: function (id, callback) {
+        var data = {
+          phone: id
+        }
+        $http({
+          url: adminurl + 'User/profileFromPhoneNo',
+          method: 'POST',
+          //withCredentials: false,
+          data: data,
+        }).success(callback);
+      },
+      getNotification: function (id, callback) {
+        var data = {
+          _id: id
+        }
+        $http({
+          url: adminurl + 'User/getNotificationForUser',
+          method: 'POST',
+          //withCredentials: false,
+          data: data,
+        }).success(callback);
+      },
       checkAttempted: function (currentquestion) {
         var result = $.jStorage.get("resultset")
         var attempted = _.find(result, {
@@ -127,5 +159,205 @@ angular.module('starter.services', [])
         }).success(callback);
       },
 
-    }
+      profilePic: function (data, path) {
+        img = adminurl + "upload/readFile?file=" + data;
+        path(img);
+      },
+
+      //imageupload
+
+
+
+
+      showActionsheet: function (callback) {
+        var actionsheet = [];
+        var maxImage = 1;
+        $ionicActionSheet.show({
+          //  titleText: 'choose option',
+          buttons: [{
+              text: '<i class="icon ion-ios-camera-outline"></i> Choose from gallery'
+            }, {
+              text: '<i class="icon ion-images"></i> Take from camera'
+            },
+            // {
+            //   text: '<i class="icon ion-document-text"></i> Take from file'
+            // }
+            // ,{
+            //   text: '<i class="icon ion-document-text"></i> <input type="file" value="" accept="application/pdf,application/vnd.ms-excel" class="hw100"> Take from file'
+            // }
+          ],
+          //  destructiveText: 'Delete',
+          cancelText: 'Cancel',
+          cancel: function () {
+            console.log('CANCELLED');
+          },
+          buttonClicked: function (index) {
+            console.log('BUTTON CLICKED', index);
+            if (index === 0) {
+              var options = {
+                maximumImagesCount: maxImage, // Max number of selected images
+                width: 800,
+                height: 800,
+                quality: 80 // Higher is better
+              };
+              cordova.plugins.diagnostic.isCameraAuthorized({
+                successCallback: function (authorized) {
+                  if (authorized == false) {
+                    cordova.plugins.diagnostic.requestCameraAuthorization({
+                      successCallback: function (status) {
+                        $cordovaImagePicker.getPictures(options).then(function (results) {
+                          var i = 0;
+                          $ionicLoading.show({
+                            template: 'Loading...',
+                            duration: 3000
+                          }).then(function () {});
+                          _.forEach(results, function (value) {
+                            console.log("value", value);
+                            $cordovaFileTransfer.upload(adminurl + 'upload', value)
+                              .then(function (result) {
+                                $ionicLoading.hide().then(function () {
+                                  console.log("The loading indicator is now hidden");
+                                });
+                                result.response = JSON.parse(result.response);
+                                console.log(result.response.data[0]);
+                                actionsheet.push(result.response.data[0]);
+                                i++;
+                                if (results.length == i) {
+                                  console.log("url", actionsheet)
+                                  callback(actionsheet);
+                                }
+                              }, function (err) {
+                                // Error
+                                console.log("error", err);
+                              }, function (progress) {
+                                console.log("progress", progress);
+                                // constant progress updates
+                              });
+                          });
+
+                        }, function (error) {
+                          console.log('Error: ' + JSON.stringify(error)); // In case of error
+                        });
+                      },
+                      errorCallback: function (error) {
+                        console.error(error);
+                      }
+                    });
+
+                  } else {
+                    $cordovaImagePicker.getPictures(options).then(function (results) {
+                      var i = 0;
+                      $ionicLoading.show({
+                        template: 'Loading...',
+                        duration: 3000
+                      }).then(function () {});
+                      _.forEach(results, function (value) {
+                        console.log("value", value);
+
+                        $cordovaFileTransfer.upload(adminurl + 'upload', value)
+                          .then(function (result) {
+                            $ionicLoading.hide().then(function () {});
+                            result.response = JSON.parse(result.response);
+                            actionsheet.push(result.response.data[0]);
+                            i++;
+                            if (results.length == i) {
+                              console.log("imagepicer", actionsheet)
+                              callback(actionsheet);
+                            }
+                          }, function (err) {
+                            // Error
+                            console.log("error", err);
+                          }, function (progress) {
+                            console.log("progress", progress);
+                            // constant progress updates
+                          });
+                      });
+
+                    }, function (error) {
+                      console.log('Error: ' + JSON.stringify(error)); // In case of error
+                    });
+                  }
+                },
+                errorCallback: function (error) {
+                  console.error("The following error occurred: " + error);
+                }
+              });
+            } else if (index === 1) {
+              var cameraOptions = {
+                quality: 90,
+                destinationType: Camera.DestinationType.DATA_URL,
+                sourceType: Camera.PictureSourceType.CAMERA,
+                allowEdit: false,
+                encodingType: 0,
+                targetWidth: 1200,
+                popoverOptions: CameraPopoverOptions,
+                saveToPhotoAlbum: true,
+                correctOrientation: true
+              };
+              $cordovaCamera.getPicture(cameraOptions).then(function (imageData) {
+                var imageSrc = "data:image/jpeg;base64," + imageData;
+                // $scope.showLoading('Uploading Image...', 10000);
+                $ionicLoading.show({
+                  template: 'Loading...',
+                  duration: 3000
+                }).then(function () {
+                  console.log("The loading indicator is now displayed");
+                });
+                $cordovaFileTransfer.upload(adminurl + 'upload', imageSrc)
+                  .then(function (result) {
+                    $ionicLoading.hide().then(function () {
+                      console.log("The loading indicator is now hidden");
+                    });
+                    result.response = JSON.parse(result.response);
+                    console.log(result.response.data[0]);
+                    actionsheet.push(result.response.data[0]);
+                    callback(actionsheet);
+
+                  }, function (err) {
+                    // Error
+                  }, function (progress) {
+                    // constant progress updates
+                  });
+              }, function (err) {
+                console.log(err);
+              });
+            } else {
+              console.log("hello pdf");
+              var fs = new $fileFactory();
+              $ionicPlatform.ready(function () {
+                fs.getEntriesAtRoot().then(function (result) {
+                  $scope.files = result;
+                }, function (error) {
+                  console.error(error);
+                });
+                $scope.getContents = function (path) {
+                  fs.getEntries(path).then(function (result) {
+                    $scope.files = result;
+                    $scope.files.unshift({
+                      name: "[parent]"
+                    });
+                    fs.getParentDirectory(path).then(function (result) {
+                      result.name = "[parent]";
+                      $scope.files[0] = result;
+                    });
+                  });
+                }
+              });
+            }
+            return true;
+          },
+          destructiveButtonClicked: function () {
+            console.log('DESTRUCT');
+            return true;
+          }
+        });
+        console.log("done");
+      },
+
+    };
+
+
+
+
+
   });

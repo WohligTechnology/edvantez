@@ -10019,7 +10019,7 @@ h4 {
   .list .test-image div {
     left: 50%;
     position: absolute;
-    bottom: 2%;
+    bottom: 35%;
     transform: translate(-50%, -50%);
     text-align: center; }
   .list .test-image p {
@@ -10922,7 +10922,9 @@ progress-one,
   margin: 10px auto;
   width: 80%; }
   .profImg img {
-    width: 100%; }
+    width: 100%;
+    border-radius: 50%;
+    height: 58px; }
 
 .editpro {
   text-align: -webkit-center;
