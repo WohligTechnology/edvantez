@@ -383,7 +383,7 @@ h4 {
     align-items: center;
     justify-content: center;
     height: 50px;
-    font-size: 20px;
+    font-size: 14px;
     color: #fff !important;
   }
   .dots {
@@ -576,7 +576,7 @@ li.active {
 
 .questions {
   overflow: scroll;
-  height: 250px;
+  height: 3000px;
 }
 
 // .scroll-content{ background-color: rgba(20, 171, 122, 0.08) !important;}
@@ -1085,6 +1085,8 @@ position: relative;*/
   background-color: #fe2b32;
   margin: 0 10px;
   position: relative;
+  width: 30px!important;
+   max-width: 45px!important;
 }
 
 .cols p {
@@ -1092,8 +1094,9 @@ position: relative;*/
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50px;
+  
   font-size: 20px;
+  height: 30px!important;
   color: #fff !important;
 }
 
@@ -1109,7 +1112,7 @@ position: relative;*/
 }
 
 .cols .dots+.dots {
-  top: 35px;
+  top: 25px;
 }
 
 .col p {
@@ -1118,11 +1121,12 @@ position: relative;*/
   align-items: center;
   justify-content: center;
   height: 50px;
+ font-size: 14px;
   color: #000;
 }
 
 .answered {
-  color: #a8c831 !important;
+  color: #99c929 !important;
 }
 
 .pending {
@@ -1141,6 +1145,7 @@ position: relative;*/
   padding: 20px;
   color: #fff;
   font-size: 12px;
+  height: 41px;
 }
 
 .questions .questioning {
@@ -1155,12 +1160,12 @@ position: relative;*/
   /* width: 47%; */
   border-radius: 10px 0px 0px 0px;
   color: white;
-  height: 100%;
+  height: 41px;
 }
 
 .mainquestion {
   background-color: #368caf;
-  font-size: 14px;
+  font-size: 13px;
   padding: 5px;
   font-weight: 900 !important;
   color: white;
@@ -1247,7 +1252,7 @@ progress-one,
 
 .questions {
   overflow: scroll;
-  height: 250px;
+  height: 3000px;
 }
 
 .certificate-info span {
@@ -1662,22 +1667,40 @@ video {
   display: block;
   position: absolute;
   right: -14px;
-  top: 25px;
+  top: 15px;
   height: 5px;
   width: 5px;
 }
 
 .cols .dots+.dots {
-  top: 35px;
+  top: 25px;
 }
 
 .questions {
   overflow: scroll;
-  height: 250px;
+  height: 300px;
 }
 
 .marbot {
   margin-bottom: 10px;
+      width: 90%;
+    margin: 10px auto;
+    padding: 0px;
+    position: relative;
+}
+
+.rightarr{
+  position: absolute;
+    /* transform: translate(-50%,-50%); */
+    top: 50%;
+    left: 102%;
+}
+
+.leftarr{
+  position: absolute;
+    /* transform: translate(-50%,-50%); */
+    top: 50%;
+    right: 100%;
 }
 
 .phoneno {
@@ -1718,4 +1741,17 @@ video {
 
 .pad0 {
   padding: 0;
+}
+
+
+.flex-direction-nav .flex-prev {
+    opacity: 1;
+    left: 10px;
+    display: none;
+}
+
+.flex-direction-nav .flex-next {
+    opacity: 1;
+    right: 10px;
+    display: none;
 }
