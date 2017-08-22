@@ -10228,10 +10228,6 @@ li.active .round {
 .progress-two p {
   color: #c81e47; }
 
-.questions {
-  overflow: scroll;
-  height: 3000px; }
-
 .certificate-info span {
   font-size: 12px; }
 
@@ -10287,7 +10283,7 @@ li.active .round {
   display: block;
   margin-top: 12px;
   margin-left: -110px;
-  height: 170px !important;
+  height: 215px !important;
   width: 170px !important;
   background-color: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
@@ -10692,7 +10688,7 @@ position: relative;*/
 .questions .questionings {
   background-color: #1a6a93;
   font-size: 14px;
-  margin: 0px 10px;
+  margin: 0px 5px 0px 0px;
   font-weight: 900 !important;
   /* width: 47%; */
   border-radius: 10px 0px 0px 0px;
@@ -10763,10 +10759,6 @@ progress-one,
 
 .progress-two p {
   color: #ff2a32; }
-
-.questions {
-  overflow: scroll;
-  height: 3000px; }
 
 .certificate-info span {
   font-size: 12px; }
@@ -11136,27 +11128,29 @@ video {
   top: 25px; }
 
 .questions {
-  overflow: scroll;
-  height: 300px; }
+  overflow: hidden;
+  height: auto; }
 
 .marbot {
   margin-bottom: 10px;
   width: 90%;
   margin: 10px auto;
-  padding: 0px;
+  padding: 10px;
   position: relative; }
 
 .rightarr {
   position: absolute;
   /* transform: translate(-50%,-50%); */
-  top: 50%;
-  left: 102%; }
+  top: 20%;
+  left: 100%;
+  font-size: 30px; }
 
 .leftarr {
   position: absolute;
   /* transform: translate(-50%,-50%); */
-  top: 50%;
-  right: 100%; }
+  top: 25%;
+  right: 100%;
+  font-size: 30px; }
 
 .phoneno {
   font-weight: 900;
@@ -11199,3 +11193,19 @@ video {
   opacity: 1;
   right: 10px;
   display: none; }
+
+.font-sizep {
+  font-size: 20px !important; }
+
+.color {
+  background: #fc363b;
+  padding: 5px 10px !important;
+  margin: 0px !important;
+  line-height: 15px !important;
+  top: 0px !important; }
+
+.bar .title + .button:last-child, .bar > .button + .button:last-child, .bar > .button.pull-right, .bar .buttons.pull-right, .bar .title + .buttons {
+  position: absolute;
+  top: 0px !important;
+  right: 5px;
+  bottom: 5px; }

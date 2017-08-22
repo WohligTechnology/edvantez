@@ -1,5 +1,5 @@
-//var adminurl = "http://eq.wohlig.co.in/api/"
-var adminurl = "http://wohlig.io/api/"
+var adminurl = "http://eq.wohlig.co.in/api/"
+//var adminurl = "http://wohlig.io/api/"
 //var adminurl = "http://192.168.1.118/api/"
 angular.module('starter.services', [])
 

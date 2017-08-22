@@ -1,8 +1,15 @@
 <ion-view view-title="" class="logo-center yes-title">
   <ion-nav-bar class="bar-positive bar-color ">
     <ion-nav-buttons side="left">
-      <button class="button button-icon button-clear" ng-click="rd()">
-      <span>Quit</span>
+      <button class=" button-icon button-clear" ng-click="rd()">
+      <span class= "color">Quit</span>
+      
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class=" button-icon button-clear" ng-click="rd()">
+      <!-- <span class= "color">Quit</span> -->
+      <span class=" color" ng-click="showconfirmbox()" color="danger ">Submit Test</span>
       </button>
     </ion-nav-buttons>
     <!-- <ion-nav-div >
@@ -22,18 +29,18 @@
         </div>
         <div class="col">
           <div class="row">
-            <div class="col cols text-center" style="border:1px solid red">
-              <p>{{hours}}</p>
+            <div class=" col cols text-center" style="border:1px solid red">
+              <p class = "font-sizep">{{hours}}</p>
               <div class="dots"></div>
               <div class="dots"></div>
             </div>
             <div class="col cols text-center">
-              <p>{{minutes}}</p>
+              <p  class ="font-sizep">{{minutes}}</p>
               <div class="dots"></div>
               <div class="dots"></div>
             </div>
             <div class="col cols text-center">
-              <p>{{seconds}}</p>
+              <p  class = "font-sizep">{{seconds}}</p>
 
             </div>
           </div>
@@ -93,7 +100,7 @@
           </div>
 
           <div class="row qmar">
-            <div class="col-offset-10 "></div>
+            <div class="col-10 "></div>
             <div class="col-80 ">
               <ul class="question-list ">
                 <li ng-click="selection( 'a', currentquestion.question,currentquestion.marks1, currentquestion.option1)
@@ -168,7 +175,7 @@
     
            </ion-slide-box> -->
     </div>
-    <button class="button button-full button-assertive " ng-click="showconfirmbox()" color="danger ">Submit Test</button>
+    
   </ion-content>
 
 </ion-view>
